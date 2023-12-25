@@ -10,13 +10,13 @@
 
 // MARK: - Constructor
 TempLinkedListNodeData :: TempLinkedListNodeData() {
-    this->processID = "";
+    this->processId = "";
     this->arrivalTime = 0; this->burstTime = 0;
 }
 
 // MARK: - Mutators
-void TempLinkedListNodeData :: setProcessID(string processID) {
-    this->processID = processID;
+void TempLinkedListNodeData :: setProcessID(string processId) {
+    this->processId = processId;
 }
 
 void TempLinkedListNodeData :: setArrivalTime(int arrivalTime) {
@@ -28,8 +28,8 @@ void TempLinkedListNodeData :: setBurstTime(int burstTime) {
 }
 
 // MARK: - Accessors
-string TempLinkedListNodeData :: getProcessID() const {
-    return this->processID;
+string TempLinkedListNodeData :: getProcessId() const {
+    return this->processId;
 }
 
 int TempLinkedListNodeData :: getArrivalTime() const {

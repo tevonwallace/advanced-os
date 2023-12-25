@@ -9,7 +9,7 @@
 #include "ArrivalTimeLinkedListDataNode.hpp"
 
 ArrivalTimeLinkedListDataNode :: ArrivalTimeLinkedListDataNode() {
-    this->processID = "";
+    this->processId = "";
     this->arrivalTime = 0;
     this->burstTime = 0;
     this->timeCompleted = 0;
@@ -26,8 +26,8 @@ void ArrivalTimeLinkedListDataNode :: calculateWaitingAndTurnAroundTime(int time
 }
 
 // MARK: - Mutators
-void ArrivalTimeLinkedListDataNode :: setProcessID(string processID) {
-    this->processID = processID;
+void ArrivalTimeLinkedListDataNode :: setProcessId(string processId) {
+    this->processId = processId;
 }
 
 void ArrivalTimeLinkedListDataNode :: setArrivalTime(int arrivalTime) {
@@ -43,8 +43,8 @@ void ArrivalTimeLinkedListDataNode :: setTimeCompleted(int timeCompleted) {
 }
 
 // MARK: - Accessors
-string ArrivalTimeLinkedListDataNode :: getProcessID() const {
-    return this->processID;
+string ArrivalTimeLinkedListDataNode :: getProcessId() const {
+    return this->processId;
 }
 
 int ArrivalTimeLinkedListDataNode :: getArrivalTime() const {

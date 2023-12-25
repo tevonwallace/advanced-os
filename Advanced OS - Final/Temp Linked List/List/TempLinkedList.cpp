@@ -111,13 +111,13 @@ void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *
     }
     
     while(temp != NULL) {
-        processIDArray[count] = temp->getData().getProcessID();
+        processIDArray[count] = temp->getData().getProcessId();
         burstTime = temp->getData().getBurstTime();
         
         temp2 = temp->getNextNode();
         
         while (temp2 != NULL) {
-            if (temp2->getData().getProcessID() == processIDArray[count]) {
+            if (temp2->getData().getProcessId() == processIDArray[count]) {
                 burstTime = temp2->getData().getBurstTime();
                 this->deleteNode(temp2);
                 temp2 = temp;
@@ -145,7 +145,7 @@ void TempLinkedList :: display(string schedulingAlgorithm) {
     long oneID = 0;
     
     while(temp != NULL) {
-        oneID = temp->getData().getProcessID().length();
+        oneID = temp->getData().getProcessId().length();
         
         cout << (ranCount==0?"|":"");
         if(oneID==1)
@@ -164,7 +164,7 @@ void TempLinkedList :: display(string schedulingAlgorithm) {
     ranCount = 0; cout << endl;
     
     while(temp != NULL) {
-        cout << (ranCount==0?"|":"") <<" "<<temp->getData().getProcessID()<< " |";
+        cout << (ranCount==0?"|":"") <<" "<<temp->getData().getProcessId()<< " |";
         
         ranCount = 1;
         

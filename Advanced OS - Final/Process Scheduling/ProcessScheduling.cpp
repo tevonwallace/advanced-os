@@ -130,14 +130,14 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
             else {
                 string* commaSeparatedData = splitStringByComma(dataFromLine);
                 
-                string processID = commaSeparatedData[0], arrivalTime = commaSeparatedData[1];
+                string processId = commaSeparatedData[0], arrivalTime = commaSeparatedData[1];
                 string burstTime = commaSeparatedData[2], priority = commaSeparatedData[3];
                 
                 if(arrivalTime.empty()) {
-                    throw runtime_error("\nNo Arrival Time was found for Process ID: "+processID);
+                    throw runtime_error("\nNo Arrival Time was found for Process ID: "+processId);
                 }
                 if(burstTime.empty()) {
-                    throw runtime_error("\nNo Burst Time was found for Process ID: "+processID);
+                    throw runtime_error("\nNo Burst Time was found for Process ID: "+processId);
                 }
                 else if(atoi(burstTime.c_str()) < 1) {
                     throw runtime_error("\nBurst Time cannot be less than 1");
@@ -147,7 +147,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 }
                 
                 numberOfProcesses++;
-                newDataNode.setProcessID(processID);
+                newDataNode.setProcessID(processId);
                 newDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                 newDataNode.setBurstTime(atoi(burstTime.c_str()));
                 
@@ -177,7 +177,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 }
                 
                 if(this->tempArray[2] == this->SRTF_INDEX) {
-                    arrivalTimeDataNode.setProcessID(processID);
+                    arrivalTimeDataNode.setProcessId(processId);
                     arrivalTimeDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                     arrivalTimeDataNode.setBurstTime(atoi(burstTime.c_str()));
                     
@@ -199,7 +199,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                         throw runtime_error("\nPriority cannot be a negative number");
                     }
                 
-                    arrivalTimeDataNode.setProcessID(processID);
+                    arrivalTimeDataNode.setProcessId(processId);
                     arrivalTimeDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                     arrivalTimeDataNode.setBurstTime(atoi(burstTime.c_str()));
                     
@@ -209,7 +209,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 }
                 
                 if(this->tempArray[5] == this->ROUND_ROBIN_INDEX) {
-                    arrivalTimeDataNode.setProcessID(processID);
+                    arrivalTimeDataNode.setProcessId(processId);
                     arrivalTimeDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                     arrivalTimeDataNode.setBurstTime(atoi(burstTime.c_str()));
                     
@@ -328,7 +328,7 @@ void ProcessScheduling :: start() {
 }
 
 void ProcessScheduling :: acceptDataToBeProcessed() {
-    string processID, typeOfScheduling, fileName;
+    string typeOfScheduling, fileName;
     int numberOfProcesses, arrivalTime, burstTime;
     bool dashFound = false;
     
@@ -451,7 +451,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
             
             string* commaSeparatedData = splitStringByComma(processData);
             
-            string processID = commaSeparatedData[0];
+            string processId = commaSeparatedData[0];
             
             arrivalTime = atoi(commaSeparatedData[1].c_str());
             burstTime = atoi(commaSeparatedData[2].c_str());
@@ -469,7 +469,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
                 this->validatePriority();
             }
             
-            newDataNode.setProcessID(processID);
+            newDataNode.setProcessID(processId);
             newDataNode.setArrivalTime(arrivalTime);
             newDataNode.setBurstTime(burstTime);
             
@@ -483,7 +483,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
                 else if(this->tempArray[index] == this->SRTF_INDEX) {
                     this->srtfList->organizeDataInLinkedList(newDataNode);
                     
-                    arrivalTimeDataNode.setProcessID(processID);
+                    arrivalTimeDataNode.setProcessId(processId);
                     arrivalTimeDataNode.setArrivalTime(arrivalTime);
                     arrivalTimeDataNode.setBurstTime(burstTime);
                     
@@ -497,7 +497,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
                     newDataNode.setPriority(priority);
                     this->preEmptivePriorityList->organizeDataInLinkedList(newDataNode);
                     
-                    arrivalTimeDataNode.setProcessID(processID);
+                    arrivalTimeDataNode.setProcessId(processId);
                     arrivalTimeDataNode.setArrivalTime(arrivalTime);
                     arrivalTimeDataNode.setBurstTime(burstTime);
                     
@@ -506,7 +506,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
                 else if(this->tempArray[index] == this->ROUND_ROBIN_INDEX) {
                     this->roundRobinList->organizeDataInLinkedList(newDataNode);
                     
-                    arrivalTimeDataNode.setProcessID(processID);
+                    arrivalTimeDataNode.setProcessId(processId);
                     arrivalTimeDataNode.setArrivalTime(arrivalTime);
                     arrivalTimeDataNode.setBurstTime(burstTime);
                     
@@ -599,7 +599,7 @@ void ProcessScheduling :: processAlgorithms() {
         else if(this->tempArray[index] == this->ROUND_ROBIN_INDEX) {
             Queue *queue = new Queue();
             cout << "\nRound Robin Scheduling"<<endl;
-            this->roundRobinList->roundRobin(queue, newTempLinkedList, timeQuantum, 0, 0, 0, roundRobinList->getHead().getProcessID(), "");
+            this->roundRobinList->roundRobin(queue, newTempLinkedList, timeQuantum, 0, 0, 0, roundRobinList->getHead().getProcessId(), "");
             this->roundRobinList->destroy("Round Robin");
             newTempLinkedList->display("Round Robin");
             newTempLinkedList->calculateWaitingAndTurnAroundTime(roundRobinArrivalList, "Round Robin", this->activateWaitingAndTurnAroundTimeForAllProcesses);

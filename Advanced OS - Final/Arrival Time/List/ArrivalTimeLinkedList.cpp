@@ -180,11 +180,11 @@ void ArrivalTimeLinkedList :: destroy(string schedulingAlgorithm) {
 }
 
 // MARK: - Calculate Waiting & Turn Around Time
-void ArrivalTimeLinkedList :: calculateWaitingAndTurnAroundTime(string processID, int completedTime, bool activateWaitingAndTurnAroundTimeForAllProcesses) {
+void ArrivalTimeLinkedList :: calculateWaitingAndTurnAroundTime(string processId, int completedTime, bool activateWaitingAndTurnAroundTimeForAllProcesses) {
     ArrivalTimeLinkedListNode *temp = this->head;
     
     while (temp != NULL) {
-        if (temp->getData().getProcessID() == processID) {
+        if (temp->getData().getProcessId() == processId) {
             
             temp->setWaitingAndTurnAroundTime(completedTime);
             this->setWaitingTime(temp->getData().getWaitingTime());
@@ -192,7 +192,7 @@ void ArrivalTimeLinkedList :: calculateWaitingAndTurnAroundTime(string processID
             
             if (activateWaitingAndTurnAroundTimeForAllProcesses) {
                 
-                cout << temp->getData().getProcessID() << "\t\t\t" << temp->getData().getTurnAroundTime() << " - " << temp->getData().getBurstTime() << " = " <<temp->getData().getWaitingTime() << "\t\t"
+                cout << temp->getData().getProcessId() << "\t\t\t" << temp->getData().getTurnAroundTime() << " - " << temp->getData().getBurstTime() << " = " <<temp->getData().getWaitingTime() << "\t\t"
                 << temp->getData().getTimeCompleted() << " - " << temp->getData().getArrivalTime() << " = " << temp->getData().getTurnAroundTime() << endl;
             }
             break;

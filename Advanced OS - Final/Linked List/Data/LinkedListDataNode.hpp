@@ -15,7 +15,7 @@ using namespace std;
 class LinkedListDataNode {
 private:
     // MARK: - Declaring Variables
-    string processID;
+    string processId;
     int arrivalTime, burstTime, priority;
     
 public:
@@ -23,7 +23,7 @@ public:
     LinkedListDataNode();
     
     // MARK: - Mutators
-    void setProcessID(string processID);
+    void setProcessID(string processId);
     
     void setArrivalTime(int arrivalTime);
     
@@ -32,7 +32,7 @@ public:
     void setPriority(int priority);
     
     // MARK: - Accessors
-    string getProcessID() const;
+    string getProcessId() const;
     
     int getArrivalTime() const;
     

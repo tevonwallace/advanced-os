@@ -58,7 +58,7 @@ void WaitingAndTurnAroundTime :: display(bool activateWaitingAndTurnAroundTimeFo
         turnAroundTime += temp->getData().getTurnAroundTime();
         
         if (activateWaitingAndTurnAroundTimeForAllProcesses) {
-            cout << temp->getData().getProcessID() << "\t\t\t" << temp->getData().getTurnAroundTime() << " - " << temp->getData().getBurstTime() << " = " << temp->getData().getWaitingTime() << "\t\t"
+            cout << temp->getData().getProcessId() << "\t\t\t" << temp->getData().getTurnAroundTime() << " - " << temp->getData().getBurstTime() << " = " << temp->getData().getWaitingTime() << "\t\t"
             << temp->getData().getTimeCompleted() << " - " << temp->getData().getArrivalTime() << " = " << temp->getData().getTurnAroundTime() << endl;
         }
         

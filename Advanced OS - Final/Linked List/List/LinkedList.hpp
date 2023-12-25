@@ -30,7 +30,7 @@ public:
     void insertAtMiddle(LinkedListDataNode data);
     
     // MARK: - Deleting a Node
-    void deleteNode(string processID);
+    void deleteNode(string processId);
     
     // MARK: - Check if Empty
     bool isEmpty();
@@ -47,7 +47,7 @@ public:
     void destroy(string schedulingAlgorithm);
     
     // MARK: - Find Arrival Times
-    string findArrivalTime(Queue *Queue, int burstTime, string processID);
+    string findArrivalTime(Queue *Queue, int burstTime, string processId);
     
     // MARK: - Find Smallest Burst Time
     LinkedListDataNode findSmallestBurstTime(int burstTime);
@@ -79,6 +79,6 @@ public:
     // MARK: - Round Robin Scheduling
     void roundRobin(Queue *Queue, TempLinkedList *newTempLinkedList,
                     int timeQuantum, int burstTime, int arrivalTime,
-                    int ran, string processID, string errorID) throw(runtime_error);
+                    int ran, string processId, string errorID) throw(runtime_error);
 };
 #endif /* LinkedList_hpp */

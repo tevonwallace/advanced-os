@@ -9,15 +9,15 @@
 #include "LinkedListDataNode.hpp"
 
 LinkedListDataNode :: LinkedListDataNode() {
-    this->processID = "";
+    this->processId = "";
     this->arrivalTime = 0;
     this->burstTime = 0;
     this->priority = 0;
 }
 
 // MARK: - Mutators
-void LinkedListDataNode :: setProcessID(string processID) {
-    this->processID = processID;
+void LinkedListDataNode :: setProcessID(string processId) {
+    this->processId = processId;
 }
 
 void LinkedListDataNode :: setArrivalTime(int arrivalTime) {
@@ -33,8 +33,8 @@ void LinkedListDataNode :: setPriority(int priority) {
 }
 
 // MARK: - Accessors
-string LinkedListDataNode :: getProcessID() const {
-    return this->processID;
+string LinkedListDataNode :: getProcessId() const {
+    return this->processId;
 }
 
 int LinkedListDataNode :: getArrivalTime() const {

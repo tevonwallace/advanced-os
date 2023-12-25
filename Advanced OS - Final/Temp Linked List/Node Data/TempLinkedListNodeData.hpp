@@ -15,7 +15,7 @@ using namespace std;
 class TempLinkedListNodeData {
 private:
     // MARK: - Declaring Variables
-    string processID;
+    string processId;
     int arrivalTime, burstTime;
     
 public:
@@ -23,14 +23,14 @@ public:
     TempLinkedListNodeData();
     
     // MARK: - Mutators
-    void setProcessID(string processID);
+    void setProcessID(string processId);
     
     void setArrivalTime(int arrivalTime);
     
     void setBurstTime(int burstTime);
     
     // MARK: - Accessors
-    string getProcessID() const;
+    string getProcessId() const;
     
     int getArrivalTime() const;
     

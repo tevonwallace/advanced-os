@@ -10,7 +10,7 @@
 
 // MARK: - Constructor
 WaitingAndTurnAroundTimeDataNode :: WaitingAndTurnAroundTimeDataNode() {
-    this->processID = "";
+    this->processId = "";
     this->arrivalTime = 0;
     this->burstTime = 0;
     this->waitingTime = 0;
@@ -27,8 +27,8 @@ void WaitingAndTurnAroundTimeDataNode :: calculateWaitingAndTurnAroundTime(int t
 }
 
 // MARK: - Mutators
-void WaitingAndTurnAroundTimeDataNode :: setProcessID(string processID) {
-    this->processID = processID;
+void WaitingAndTurnAroundTimeDataNode :: setProcessID(string processId) {
+    this->processId = processId;
 }
 
 void WaitingAndTurnAroundTimeDataNode :: setArrivalTime(int arrivalTime) {
@@ -44,8 +44,8 @@ void WaitingAndTurnAroundTimeDataNode :: setTimeCompleted(int timeCompleted) {
 }
 
 // MARK: - Accessors
-string WaitingAndTurnAroundTimeDataNode :: getProcessID() const {
-    return this->processID;
+string WaitingAndTurnAroundTimeDataNode :: getProcessId() const {
+    return this->processId;
 }
 
 int WaitingAndTurnAroundTimeDataNode :: getArrivalTime() const {

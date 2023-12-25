@@ -16,7 +16,7 @@ using namespace std;
 class ArrivalTimeLinkedListDataNode {
 private:
     // MARK: - Declaring Variables
-    string processID;
+    string processId;
     int arrivalTime, burstTime, timeCompleted;
     double waitingTime, turnAroundTime;
     
@@ -28,7 +28,7 @@ public:
     void calculateWaitingAndTurnAroundTime(int timeCompleted);
     
     // MARK: - Mutators
-    void setProcessID(string processID);
+    void setProcessId(string processId);
     
     void setArrivalTime(int arrivalTime);
     
@@ -37,7 +37,7 @@ public:
     void setTimeCompleted(int timeCompleted);
     
     // MARK: - Accessors
-    string getProcessID() const;
+    string getProcessId() const;
     
     int getArrivalTime() const;
     

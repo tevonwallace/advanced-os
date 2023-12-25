@@ -19,7 +19,7 @@ using namespace std;
 class WaitingAndTurnAroundTimeDataNode {
 private:
     // MARK: - Declaring Variables
-    string processID;
+    string processId;
     int arrivalTime, burstTime, waitingTime, turnAroundTime, timeCompleted;
     
 public:
@@ -30,7 +30,7 @@ public:
     void calculateWaitingAndTurnAroundTime(int timeCompleted);
     
     // MARK: - Mutators
-    void setProcessID(string processID);
+    void setProcessID(string processId);
     
     void setArrivalTime(int arrivalTime);
     
@@ -39,7 +39,7 @@ public:
     void setTimeCompleted(int timeCompleted);
     
     // MARK: - Accessors
-    string getProcessID() const;
+    string getProcessId() const;
     
     int getArrivalTime() const;
     

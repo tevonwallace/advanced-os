@@ -62,7 +62,7 @@ public:
     void destroy(string schedulingAlgorithm);
     
     // MARK: - Calculate Waiting & Turn Around Time
-    void calculateWaitingAndTurnAroundTime(string processID, int completedTime,
+    void calculateWaitingAndTurnAroundTime(string processId, int completedTime,
                                            bool activateWaitingAndTurnAroundTimeForAllProcesses);
 };
 #endif /* ArrivalTimeLinkedList_hpp */
