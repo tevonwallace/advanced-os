@@ -569,7 +569,7 @@ void ProcessScheduling :: processAlgorithms() {
             case ProcessScheduling::FCFS_INDEX:
                 cout << "\nFCFS (First Come First Serve) Scheduling"<<endl;
                 this->fcfsList->display();
-                this->fcfsList->FCFS(newTempLinkedList, waitingAndTurnAroundTime, 0, 0);
+                this->fcfsList->FCFS(newTempLinkedList, waitingAndTurnAroundTime);
                 this->fcfsList->destroy("FCFS");
                 newTempLinkedList->display("FCFS");
                 newTempLinkedList->destroy("FCFS");
@@ -578,7 +578,7 @@ void ProcessScheduling :: processAlgorithms() {
             case ProcessScheduling::SJF_INDEX:
                 cout << "\nSJF (Shortest Job First) Scheduling"<<endl;
                 this->sjfList->display();
-                this->sjfList->SJF(newTempLinkedList, waitingAndTurnAroundTime, 0, 0);
+                this->sjfList->SJF(newTempLinkedList, waitingAndTurnAroundTime);
                 this->sjfList->destroy("SJF");
                 newTempLinkedList->display("SJF");
                 newTempLinkedList->destroy("SJF");
@@ -587,7 +587,7 @@ void ProcessScheduling :: processAlgorithms() {
             case ProcessScheduling::SRTF_INDEX:
                 cout << "\nSRTF (Shortest Remaining Time First) Scheduling"<<endl;
                 this->srtfList->display();
-                this->srtfList->SRTF(newTempLinkedList, 0, 0, 0);
+                this->srtfList->SRTF(newTempLinkedList);
                 this->srtfList->destroy("SRTF");
                 newTempLinkedList->display("SRTF");
                 newTempLinkedList->calculateWaitingAndTurnAroundTime(this->srtfArrivalList, "SRTF", this->activateWaitingAndTurnAroundTimeForAllProcesses);
@@ -613,7 +613,7 @@ void ProcessScheduling :: processAlgorithms() {
                 Queue *queue = new Queue();
                 cout << "\nRound Robin Scheduling (Time Quantum: "<< timeQuantum<< ")"<<endl;
                 this->roundRobinList->display();
-                this->roundRobinList->roundRobin(queue, newTempLinkedList, timeQuantum, 0, 0, 0, this->roundRobinList->getHead().getProcessId());
+                this->roundRobinList->roundRobin(queue, newTempLinkedList, this->roundRobinList->getHead().getProcessId(), timeQuantum);
                 this->roundRobinList->destroy("Round Robin");
                 newTempLinkedList->display("Round Robin");
                 newTempLinkedList->calculateWaitingAndTurnAroundTime(this->roundRobinArrivalList, "Round Robin", this->activateWaitingAndTurnAroundTimeForAllProcesses);

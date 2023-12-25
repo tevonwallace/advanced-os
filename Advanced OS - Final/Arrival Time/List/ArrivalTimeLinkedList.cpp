@@ -56,8 +56,7 @@ void ArrivalTimeLinkedList :: insertAtBack(ArrivalTimeLinkedListDataNode data) {
     }
 }
 
-void ArrivalTimeLinkedList :: insertAtMiddle(ArrivalTimeLinkedListDataNode data)
-{
+void ArrivalTimeLinkedList :: insertAtMiddle(ArrivalTimeLinkedListDataNode data) {
     ArrivalTimeLinkedListNode *previousNode, *nextNode, *temp = new ArrivalTimeLinkedListNode(data, NULL);
     int nodeSize;
     
@@ -185,7 +184,6 @@ void ArrivalTimeLinkedList :: calculateWaitingAndTurnAroundTime(string processId
     
     while (temp != NULL) {
         if (temp->getData().getProcessId() == processId) {
-            
             temp->setWaitingAndTurnAroundTime(completedTime);
             this->setWaitingTime(temp->getData().getWaitingTime());
             this->setTurnAroundTime(temp->getData().getTurnAroundTime());

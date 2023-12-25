@@ -609,8 +609,8 @@ void LinkedList :: preEmptivePriority(int priorityLevel, TempLinkedList *newTemp
 
 // MARK: - Round Robin Scheduling
 void LinkedList :: roundRobin(Queue *queue, TempLinkedList *newTempLinkedList,
-                              int timeQuantum, int burstTime, int arrivalTime,
-                              int ran, string processId) throw(runtime_error) {
+                              string processId, int timeQuantum, int burstTime,
+                              int arrivalTime, int ran) throw(runtime_error) {
     LinkedListNode *temp;
     LinkedListDataNode data;
     TempLinkedListNodeData tempData;
@@ -682,6 +682,6 @@ void LinkedList :: roundRobin(Queue *queue, TempLinkedList *newTempLinkedList,
             this->deleteNode(temp->getData().getProcessId());
         }
         
-        this->roundRobin(queue, newTempLinkedList, timeQuantum, burstTime, arrivalTime, 1, processId);
+        this->roundRobin(queue, newTempLinkedList, processId, timeQuantum, burstTime, arrivalTime, 1);
     }
 }
