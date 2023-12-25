@@ -1,14 +1,14 @@
 //
 //  main.cpp
-//  Advanced OS - Final
+//  Advanced Operating Systems - Final Project
 //
-//  Created by Dr. Tevon Wallace  on 12/25/23.
+//  Created by Dr. Tevon Wallace  on 12/24/23.
 //
 
-#include <iostream>
+#include "Process Scheduling/ProcessScheduling.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+// MARK: - Main Method
+int main() {
+    ProcessScheduling *scheduling = new ProcessScheduling();
+    scheduling->start();
 }

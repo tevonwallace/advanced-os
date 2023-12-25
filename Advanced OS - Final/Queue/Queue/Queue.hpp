@@ -1,13 +1,35 @@
 //
 //  Queue.hpp
-//  Advanced OS - Final
+//  Advanced Operating Systems - Final Project
 //
-//  Created by Dr. Tevon Wallace  on 12/25/23.
+//  Created by Dr. Tevon Wallace  on 12/24/23.
 //
 
-#ifndef Queue_hpp
-#define Queue_hpp
+#ifndef Queues_hpp
+#define Queues_hpp
 
-#include <stdio.h>
+#include "QueueNode.hpp"
 
-#endif /* Queue_hpp */
+class Queue {
+private:
+    // MARK: - Declaring Variables
+    QueueNode *front;
+    QueueNode *rear;
+    
+public:
+    // MARK: - Constructor
+    Queue();
+    
+    // MARK: - Enqueue
+    void enqueue(LinkedListDataNode data);
+    
+    // MARK: - Dequeue
+    LinkedListDataNode dequeue();
+    
+    // MARK: - Check if Empty
+    bool isEmpty();
+    
+    // MARK: - Destroying Queue
+    void destroy();
+};
+#endif /* Queues_hpp */

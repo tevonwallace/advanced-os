@@ -6,7 +6,7 @@
 //  Copyright © 2023 Tevon Wallace. All rights reserved.
 //
 
-#include "ArrivalTimeLinedListDataNode.hpp"
+#include "ArrivalTimeLinkedListDataNode.hpp"
 
 ArrivalTimeLinkedListDataNode :: ArrivalTimeLinkedListDataNode() {
     this->processID = "";

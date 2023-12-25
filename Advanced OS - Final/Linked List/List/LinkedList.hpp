@@ -1,13 +1,84 @@
 //
 //  LinkedList.hpp
-//  Advanced OS - Final
+//  Advanced Operating Systems - Final Project
 //
-//  Created by Dr. Tevon Wallace  on 12/25/23.
+//  Created by Dr. Tevon Wallace  on 12/24/23.
 //
 
 #ifndef LinkedList_hpp
 #define LinkedList_hpp
 
-#include <stdio.h>
+#include "LinkedListNode.hpp"
+#include "TempLinkedList.hpp"
+#include "WaitingAndTurnAroundTime.hpp"
+#include "Queue.hpp"
 
+class LinkedList {
+private:
+    // MARK: - Declaring Variables
+    LinkedListNode *head, *tail;
+    
+public:
+    // MARK: - Constructor
+    LinkedList();
+    
+    // MARK: - Insertions
+    void insertAtFront(LinkedListDataNode data);
+    
+    void insertAtBack(LinkedListDataNode data);
+    
+    void insertAtMiddle(LinkedListDataNode data);
+    
+    // MARK: - Deleting a Node
+    void deleteNode(string processID);
+    
+    // MARK: - Check if Empty
+    bool isEmpty();
+    
+    // MARK: - Head and Tail Accessors
+    LinkedListDataNode getHead() const;
+    
+    LinkedListDataNode getTail() const;
+    
+    // MARK: - Organizing LinkedList
+    void organizeDataInLinkedList(LinkedListDataNode data);
+    
+    // MARK: - Destroying LinkedList
+    void destroy(string schedulingAlgorithm);
+    
+    // MARK: - Find Arrival Times
+    string findArrivalTime(Queue *Queue, int burstTime, string processID);
+    
+    // MARK: - Find Smallest Burst Time
+    LinkedListDataNode findSmallestBurstTime(int burstTime);
+    
+    // MARK: - Find Highest Priority
+    LinkedListDataNode findHighestPriority(int burstTime, int priorityLevel);
+    
+    // MARK: - First Come First Serve Scheduling
+    void FCFS(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTime *waitingAndTurnAroundTime,
+              int burstTime, int ran, string errorID) throw(runtime_error);
+    
+    // MARK: - Shortest Job First Scheduling
+    void SJF(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTime *waitingAndTurnAroundTime,
+             int burstTime, int ran, string errorID) throw(runtime_error);
+    
+    // MARK: - Shortest Remaining Time First Scheduling
+    void SRTF(TempLinkedList *newTempLinkedList, int burstTime,
+              int arrivalTime, int ran, string errorID) throw(runtime_error);
+    
+    // MARK: - Non-PreEmptive Priority Scheduling
+    void nonPreEmptivePriority(int priorityLevel, TempLinkedList *newTempLinkedList,
+                               WaitingAndTurnAroundTime *waitingAndTurnAroundTime,
+                               int burstTime, string errorID) throw(runtime_error);
+    
+    // MARK: - PreEmptive Priority Scheduling
+    void preEmptivePriority(int priorityLevel, TempLinkedList *newTempLinkedList,
+                            int burstTime, int arrivalTime, string errorID) throw(runtime_error);
+    
+    // MARK: - Round Robin Scheduling
+    void roundRobin(Queue *Queue, TempLinkedList *newTempLinkedList,
+                    int timeQuantum, int burstTime, int arrivalTime,
+                    int ran, string processID, string errorID) throw(runtime_error);
+};
 #endif /* LinkedList_hpp */
