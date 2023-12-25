@@ -596,18 +596,18 @@ void ProcessScheduling :: processAlgorithms() {
                 cout << "\nNon-Preemptive Priority Scheduling"<<endl;
                 this->nonPreEmptivePriorityList->display(4);
                 this->nonPreEmptivePriorityList->nonPreEmptivePriority(priorityLevel[0], newTempLinkedList, waitingAndTurnAroundTime, this->nonPreEmptivePriorityList->getHead().getArrivalTime());
-                this->nonPreEmptivePriorityList->destroy("Non-PreEmptive Priority");
-                newTempLinkedList->display("Non-PreEmptive Priority");
-                newTempLinkedList->destroy("Non-PreEmptive Priority");
-                waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "Non-PreEmptive Priority");
+                this->nonPreEmptivePriorityList->destroy("Non-Preemptive Priority");
+                newTempLinkedList->display("Non-Preemptive Priority");
+                newTempLinkedList->destroy("Non-Preemptive Priority");
+                waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "Non-Preemptive Priority");
                 break;
             case ProcessScheduling::PRE_EMPTIVE_INDEX:
                 cout << "\nPreemptive Priority Scheduling"<<endl;
                 this->preEmptivePriorityList->display(4);
                 this-> preEmptivePriorityList->preEmptivePriority(priorityLevel[1], newTempLinkedList, this->preEmptivePriorityList->getHead().getArrivalTime(), preEmptivePriorityList->getHead().getArrivalTime());
-                this->preEmptivePriorityList->destroy("PreEmptive Priority");
-                newTempLinkedList->display("PreEmptive Priority");
-                newTempLinkedList->calculateWaitingAndTurnAroundTime(this->preEmptiveArrivalList, "PreEmptive Priority", this->activateWaitingAndTurnAroundTimeForAllProcesses);
+                this->preEmptivePriorityList->destroy("Preemptive Priority");
+                newTempLinkedList->display("Preemptive Priority");
+                newTempLinkedList->calculateWaitingAndTurnAroundTime(this->preEmptiveArrivalList, "Preemptive Priority", this->activateWaitingAndTurnAroundTimeForAllProcesses);
                 break;
             case ProcessScheduling::ROUND_ROBIN_INDEX:
                 Queue *queue = new Queue();
