@@ -81,5 +81,4 @@ void WaitingAndTurnAroundTime :: destroy(string schedulingAlgorithm) {
         delete temp;
         this->count--;
     }
-    //cout << "\nList of "<< schedulingAlgorithm<< " Nodes was Destroyed!  WAITINGANDTURNAROUNDTIME"<<endl;
 }

@@ -249,9 +249,8 @@ void TempLinkedList :: destroy(string schedulingAlgorithm) {
     TempLinkedListNode *temp;
     
     while(!this->isEmpty()) {
-        temp = head;
-        this-> head = this->head->getNextNode();
+        temp = this->head;
+        this->head = this->head->getNextNode();
         delete temp;
     }
-   // cout << "\nList of "<<schedulingAlgorithm<<" Processes was Destroyed! TEMPLINKEDLIST"<<endl;
 }

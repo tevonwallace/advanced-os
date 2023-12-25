@@ -194,7 +194,6 @@ void LinkedList :: destroy(string schedulingAlgorithm) {
         this->head = this->head->getNextNode();
         delete temp;
     }
-    //cout << "\nList of "<<schedulingAlgorithm<<" Processes was Destroyed! LINKEDLIST"<<endl;
 }
 
 // MARK: - Find Arrival Times

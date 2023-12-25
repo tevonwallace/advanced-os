@@ -177,7 +177,6 @@ void ArrivalTimeLinkedList :: destroy(string schedulingAlgorithm) {
         delete temp;
         this->count--;
     }
-    //cout << "\nList of "<<schedulingAlgorithm<<" Processes was Destroyed! ARRIVAL TIME"<<endl;
 }
 
 // MARK: - Calculate Waiting & Turn Around Time
