@@ -10,10 +10,10 @@
 
 #include "WaitingAndTurnAroundTimeNode.hpp"
 
-//This LinkedList calculates the Waiting Time and Turn Around Time for FCFS, SJF and Non-PreEmptive Priority
+// This LinkedList calculates the Waiting Time and Turn Around Time for FCFS, SJF and Non-PreEmptive Priority
 
-//Turn Around Time = Time Finished/Completed - Arrival Time
-//Waiting Time =  Turn Around Time - Burst Time
+// Turn Around Time = Time Finished/Completed - Arrival Time
+// Waiting Time =  Turn Around Time - Burst Time
 
 class WaitingAndTurnAroundTime{
 private:

@@ -95,7 +95,7 @@ void LinkedList :: deleteNode(string processId) {  // Change this to delete by P
     current = this->head;
     prevNode = this->head;
     
-    if(this->head != NULL) {
+    if(!this->isEmpty()) {
         if(this->head->getData().getProcessId() == processId) {
             temp = this->head;
             
@@ -146,18 +146,15 @@ void LinkedList :: deleteNode(string processId) {  // Change this to delete by P
 }
 
 // MARK: - Check if Empty
-bool LinkedList :: isEmpty() {
-    if(this->head == NULL) {
-        return true;
-    }
-    return false;
+bool LinkedList :: isEmpty() const {
+    return this->head == NULL;
 }
 
 // MARK: - Head and Tail Accessors
 LinkedListDataNode LinkedList :: getHead() const {
     LinkedListDataNode data;
     
-    if(this->head != NULL) {
+    if (!this->isEmpty()) {
         data =  this->head->getData();
     }
     return data;

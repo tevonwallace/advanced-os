@@ -30,7 +30,7 @@ private:
     void deleteNode(string processId);
     
     // MARK: - Check if Empty
-    bool isEmpty();
+    bool isEmpty() const;
     
     LinkedListDataNode getTail() const;
     

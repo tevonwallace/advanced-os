@@ -30,7 +30,7 @@ private:
     ArrivalTimeLinkedListDataNode getTail() const;
     
     // MARK: - Check If Empty
-    bool isEmpty();
+    bool isEmpty() const;
     
     // MARK: - Mutators
     void setWaitingTime(double waitingTime);

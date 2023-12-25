@@ -33,11 +33,8 @@ void TempLinkedList :: insertAtBack(TempLinkedListNodeData data) {
 }
 
 // MARK: - Check if Empty
-bool TempLinkedList :: isEmpty() {
-    if(this->head == NULL) {
-        return true;
-    }
-    return false;
+bool TempLinkedList :: isEmpty() const {
+    return this->head == NULL;
 }
 
 // MARK: - Deleting a Node
@@ -48,7 +45,7 @@ void TempLinkedList :: deleteNode(TempLinkedListNode *newNode) {
     current = this->head;
     prevNode = this->head;
     
-    if(this->head != NULL) {
+    if(!this->isEmpty()) {
         if (this->head == newNode) {
             temp = this->head;
             

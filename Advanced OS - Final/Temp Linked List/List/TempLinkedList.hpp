@@ -24,7 +24,7 @@ public:
     void insertAtBack(TempLinkedListNodeData data);
     
     // MARK: - Check if Empty
-    bool isEmpty();
+    bool isEmpty() const;
     
     // MARK: - Deleting a Node
     void deleteNode(TempLinkedListNode *newNode);

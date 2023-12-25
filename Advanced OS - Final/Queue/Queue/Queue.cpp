@@ -19,7 +19,7 @@ void Queue :: enqueue(LinkedListDataNode data) {
     QueueNode *temp = new QueueNode(data, NULL, NULL);
     
     if(temp != NULL) {
-        if(this->front == NULL) {
+        if(this->isEmpty()) {
             this->front = temp;
             this->rear = temp;
         }
@@ -39,7 +39,7 @@ LinkedListDataNode Queue :: dequeue() {
     QueueNode *temp;
     LinkedListDataNode data;
     
-    if(this->front != NULL) {
+    if(!this->isEmpty()) {
         if(this->rear == this->front) {
             this->rear = NULL;
         }
@@ -47,7 +47,7 @@ LinkedListDataNode Queue :: dequeue() {
         temp = this->front;
         this->front = this->front->getNextNode();
         
-        if(this->front != NULL) {
+        if(!this->isEmpty()) {
             this->front->setPrevNode(NULL);
         }
         
@@ -62,12 +62,7 @@ LinkedListDataNode Queue :: dequeue() {
 
 // MARK: - Check if Empty
 bool Queue :: isEmpty() {
-    if(this->front == NULL) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return this->front == NULL;
 }
 
 // MARK: - Destroying Queue

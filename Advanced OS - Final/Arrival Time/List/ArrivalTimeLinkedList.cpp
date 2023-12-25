@@ -92,7 +92,7 @@ void ArrivalTimeLinkedList :: insertAtMiddle(ArrivalTimeLinkedListDataNode data)
 ArrivalTimeLinkedListDataNode ArrivalTimeLinkedList :: getHead() const {
     ArrivalTimeLinkedListDataNode data;
     
-    if (this->head != NULL) {
+    if (!this->isEmpty()) {
         data = this->head->getData();
     }
     return data;
@@ -129,11 +129,8 @@ void ArrivalTimeLinkedList :: organize(ArrivalTimeLinkedListDataNode data) {
 }
 
 // MARK: - Check If Empty
-bool ArrivalTimeLinkedList :: isEmpty() {
-    if (this->head == NULL) {
-        return true;
-    }
-    return false;
+bool ArrivalTimeLinkedList :: isEmpty() const {
+    return this->head == NULL;
 }
 
 // MARK: - Mutators
