@@ -43,7 +43,7 @@ private:
     string* splitStringByComma(string data);
         
     // MARK: - Parsing the Options from String
-    void parsingString(int tempArray[], string typeOfScheduling);
+    void parsingString(string typeOfScheduling);
     
     // MARK: - Checking if Array is Empty
     bool isArrayEmpty();
@@ -70,7 +70,9 @@ private:
     
     void processAlgorithms();
     
-    void validatePriority(string priority);
+    void validatePriority();
+    
+    bool isPriorityScheduling();
 public:
     // MARK: - Constructors
     ProcessScheduling();

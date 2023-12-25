@@ -10,16 +10,12 @@
 
 // MARK: - Constructors
 ProcessScheduling :: ProcessScheduling() {
-    for(int index = 0; index < 6; index++) {
-        this->tempArray[index] = 0;
-    }
-    
     this->priority = 0;
     this->activateWaitingAndTurnAroundTimeForAllProcesses = false;
 }
 
 // MARK: - Parsing the Options from String
-void ProcessScheduling :: parsingString(int tempArray[], string typeOfScheduling) { //This method is used to find the options that the user selected
+void ProcessScheduling :: parsingString(string typeOfScheduling) { //This method is used to find the options that the user selected
     string str = "";
     long length = typeOfScheduling.length()-1;
     
@@ -28,7 +24,7 @@ void ProcessScheduling :: parsingString(int tempArray[], string typeOfScheduling
             str = str + typeOfScheduling.at(index);
             
             if(atoi(str.c_str())-1 < 6) {
-                tempArray[atoi(str.c_str())-1] = atoi(str.c_str());
+                this->tempArray[atoi(str.c_str())-1] = atoi(str.c_str());
                 str = "";
             }
         }
@@ -40,7 +36,7 @@ bool ProcessScheduling :: isArrayEmpty() {
     int count = 0;
     
     for(int index = 0; index < 6; index++) {
-        if(tempArray[index] == 0) {
+        if(this->tempArray[index] == 0) {
             count++;
         }
     }
@@ -109,8 +105,8 @@ string* ProcessScheduling :: splitStringByComma(string data) {
     return array;
 }
 
-void ProcessScheduling :: validatePriority(string priority) {
-    if (atoi(priority.c_str()) < 0) {
+void ProcessScheduling :: validatePriority() {
+    if (this->priority < 0) {
         throw runtime_error("\nPriority cannot be a negative number");
     }
 }
@@ -156,14 +152,16 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 newDataNode.setBurstTime(atoi(burstTime.c_str()));
                 
                 if(this->tempArray[3] == this->NON_PRE_EMPTIVE_INDEX) {
-                    this->validatePriority(priority);
+                    this->priority = atoi(priority.c_str());
+                    this->validatePriority();
                     
                     if (!priority.empty() && (atoi(priority.c_str()) < 1)) {
                         this->tempArray[3] = 0;
                     }
                 }
                 if(this->tempArray[4] == this->PRE_EMPTIVE_INDEX) {
-                    this->validatePriority(priority);
+                    this->priority = atoi(priority.c_str());
+                    this->validatePriority();
                         
                     if (!priority.empty() && (atoi(priority.c_str()) < 1)) {
                         this->tempArray[4] = 0;
@@ -311,6 +309,11 @@ void ProcessScheduling :: checkCharacterForAllProcesses(string data) {
     this->activateWaitingAndTurnAroundTimeForAllProcesses = activateWaitingAndTurnAroundTimeForAllProcesses;
 }
 
+bool ProcessScheduling :: isPriorityScheduling() {
+    return (this->tempArray[3] == this->NON_PRE_EMPTIVE_INDEX)
+    || (this->tempArray[4] == this->PRE_EMPTIVE_INDEX);
+}
+
 void ProcessScheduling :: start() {
     try {
         while(true) {
@@ -339,7 +342,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
     cout << "|*****************************************************************|" << endl;
     cout << "|          PRIORITY BASED PROCESS SCHEDULING ALGORITHMS           |"<<endl;
     cout << "|*****************************************************************|" << endl;
-    cout << "\n1 -> FCFS (First Come First Serve) Scheduling\n2 -> SJF (Shortest Job First) Scheduling\n3 -> SRTF (Shortest Remaining Time First) Scheduling\n4 -> Non Preemptive Priority Scheduling\n5 -> Preemptive Priority Scheduling\n6 -> Round Robin Scheduling\n7 -> Exit\n"<<endl;
+    cout << "\n1 -> FCFS (First Come First Serve) Scheduling\n2 -> SJF (Shortest Job First) Scheduling\n3 -> SRTF (Shortest Remaining Time First) Scheduling\n4 -> Non Preemptive Priority Scheduling\n5 -> Preemptive Priority Scheduling\n6 -> Round Robin Scheduling\n7 -> Exit"<<endl;
     fflush(stdin);
     getline(cin, typeOfScheduling);
     
@@ -385,7 +388,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
         }
     }
     else if(!dashFound) {
-        this->parsingString(this->tempArray, typeOfScheduling);
+        this->parsingString(typeOfScheduling);
         
         for(int index = 0; index < 2; index++) {
             digit[index] = 0;
@@ -419,14 +422,14 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
         throw runtime_error("Invalid Option");
     }
     
-    cout << "\nHow many processes would you like to enter?\n{ -1 = Exit, -2 = Read From File }"<<endl;
+    cout << "\nHow many processes would you like to enter?\n[-1 = Exit, -2 = Read From File]"<<endl;
     cin >> numberOfProcesses;
     
     if(!cin) {
         throw runtime_error("\nIncorrect DataType Entered for Number of Processes");
     }
     else if(numberOfProcesses == -2) {
-        cout << "\nEnter filename: "<<endl;
+        cout << "\nEnter filename: ";
         cin >> fileName;
         
         this->readFromFile(fileName);
@@ -442,43 +445,28 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
     }
     else {
         for(int index = 0; index < numberOfProcesses; index++) {
-            cout << "\nEnter Process ID:\t";
-            cin >> processID;
+            string processData;
+            cout << "Enter details [Process ID, Arrival Time, Burst Time" << ((this->isPriorityScheduling() == true) ? ", Priority]": "]:\t") << " ";
+            cin >> processData;
             
-            if(processID.length() > 3) {
-                throw runtime_error("\nThe length of Process ID cannot be more than 3 characters");
-            }
+            string* commaSeparatedData = splitStringByComma(processData);
             
-            cout << "Enter Arrival Time:\t";
-            cin >> arrivalTime;
+            string processID = commaSeparatedData[0];
             
-            if(!cin) {
-                throw runtime_error("\nIncorrect DataType for Arrival Time");
-            }
-            else if(arrivalTime < 0) {
+            arrivalTime = atoi(commaSeparatedData[1].c_str());
+            burstTime = atoi(commaSeparatedData[2].c_str());
+            this->priority = atoi(commaSeparatedData[3].c_str());
+            
+            if(arrivalTime < 0) {
                 throw runtime_error("\nArrival Time cannot be less than 0");
             }
             
-            cout << "Enter Burst Time:\t";
-            cin >> burstTime;
-            
-            if(!cin) {
-                throw runtime_error("\nIncorrect DataType for Burst Time");
-            }
-            else if(burstTime <= 0) {
+            if(burstTime <= 0) {
                 throw runtime_error("\nBurst Time cannot be less than 1");
             }
             
-            if((this->tempArray[3] == this->NON_PRE_EMPTIVE_INDEX) || (this->tempArray[4] == this->PRE_EMPTIVE_INDEX)) {
-                cout << "Enter Priority:\t\t";
-                cin >> priority;
-                
-                if(!cin) {
-                    throw runtime_error("\nIncorrect DataType for Priority");
-                }
-                else if(priority <= 0) {
-                    throw runtime_error("\nPriority cannot be less than or equal to 0");
-                }
+            if(this->isPriorityScheduling()) {
+                this->validatePriority();
             }
             
             newDataNode.setProcessID(processID);
