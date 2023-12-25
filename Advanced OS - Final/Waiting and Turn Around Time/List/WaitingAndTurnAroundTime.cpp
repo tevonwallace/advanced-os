@@ -65,9 +65,9 @@ void WaitingAndTurnAroundTime :: display(bool activateWaitingAndTurnAroundTimeFo
         temp = temp->getNextNode();
     }
     
-    cout << "Count: "<<count<<endl;
-    cout << "Average Waiting Time: " << (waitingTime / count) << endl;
-    cout << "Average Turn Around Time: " << (turnAroundTime / count) << "\n" << endl;
+    cout << "Count: "<<this->count<<endl;
+    cout << "Average Waiting Time: " << (waitingTime / this->count) << endl;
+    cout << "Average Turn Around Time: " << (turnAroundTime / this->count) << "\n" << endl;
     
     this->destroy(schedulingAlgorithm);
 }
