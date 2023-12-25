@@ -284,6 +284,7 @@ void LinkedList :: FCFS(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundT
     LinkedListNode *temp;
     TempLinkedListNodeData data;
     WaitingAndTurnAroundTimeDataNode waitingAndTurnAroundData;
+    bool shouldSkip = false;
     
     if(!this->isEmpty()) {
         temp = this->head;
@@ -293,26 +294,37 @@ void LinkedList :: FCFS(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundT
         }
         
         if(temp->getData().getArrivalTime() > burstTime) {
-            errorID = "Nothing arrived after Process: "+errorID+" was executed\nCheck Arrival Time for the Process that arrives after "+errorID;
-            throw runtime_error(errorID);
+            shouldSkip = true;
         }
         
-        errorID = temp->getData().getProcessId();
+        if (shouldSkip) {
+            data.setArrivalTime(burstTime);
+            
+            burstTime += 1;
+            data.setBurstTime(burstTime);
+            data.setProcessID("-");
+            
+            newTempLinkedList->insertAtBack(data);
+        }
+        else {
+            errorID = temp->getData().getProcessId();
+            
+            data.setProcessID(temp->getData().getProcessId());
+            data.setArrivalTime(burstTime);
+            burstTime += temp->getData().getBurstTime();
+            data.setBurstTime(burstTime);
+            
+            newTempLinkedList->insertAtBack(data);
+            
+            waitingAndTurnAroundData.setProcessID(temp->getData().getProcessId());
+            waitingAndTurnAroundData.setArrivalTime(temp->getData().getArrivalTime());
+            waitingAndTurnAroundData.setBurstTime(temp->getData().getBurstTime());
+            waitingAndTurnAroundData.calculateWaitingAndTurnAroundTime(burstTime);
+            waitingAndTurnAroundTime->insertAtBack(waitingAndTurnAroundData);
+            
+            this->deleteNode(data.getProcessId());
+        }
         
-        data.setProcessID(temp->getData().getProcessId());
-        data.setArrivalTime(burstTime);
-        burstTime += temp->getData().getBurstTime();
-        data.setBurstTime(burstTime);
-        
-        newTempLinkedList->insertAtBack(data);
-        
-        waitingAndTurnAroundData.setProcessID(temp->getData().getProcessId());
-        waitingAndTurnAroundData.setArrivalTime(temp->getData().getArrivalTime());
-        waitingAndTurnAroundData.setBurstTime(temp->getData().getBurstTime());
-        waitingAndTurnAroundData.calculateWaitingAndTurnAroundTime(burstTime);
-        waitingAndTurnAroundTime->insertAtBack(waitingAndTurnAroundData);
-        
-        this->deleteNode(data.getProcessId());
         this->FCFS(newTempLinkedList, waitingAndTurnAroundTime, burstTime, 1, errorID);
     }
 }
@@ -324,6 +336,7 @@ void LinkedList :: SJF(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTi
     LinkedListDataNode data;
     TempLinkedListNodeData tempData;
     WaitingAndTurnAroundTimeDataNode waitingAndTurnAroundData;
+    bool shouldSkip = false;
     
     if(!this->isEmpty()) {
         temp = this->head;
@@ -335,26 +348,41 @@ void LinkedList :: SJF(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTi
         data = findSmallestBurstTime(burstTime);
         
         if(data.getProcessId() == "") {
-            errorID = "Nothing arrived after Process: "+errorID+" was executed\nCheck Arrival Time for the Process that arrives after "+errorID;
-            throw runtime_error(errorID);
+            shouldSkip = true;
         }
         
-        errorID = data.getProcessId();
+        if (shouldSkip) {
+            data.setArrivalTime(burstTime);
+            
+            burstTime += 1;
+            data.setBurstTime(burstTime);
+            data.setProcessID("-");
+            
+            tempData.setProcessID(data.getProcessId());
+            tempData.setArrivalTime(data.getArrivalTime());
+            tempData.setBurstTime(data.getBurstTime());
+            
+            newTempLinkedList->insertAtBack(tempData);
+        }
+        else {
+            errorID = data.getProcessId();
+            
+            tempData.setProcessID(data.getProcessId());
+            tempData.setArrivalTime(burstTime);
+            burstTime += data.getBurstTime();
+            tempData.setBurstTime(burstTime);
+            
+            newTempLinkedList->insertAtBack(tempData);
+            
+            waitingAndTurnAroundData.setProcessID(data.getProcessId());
+            waitingAndTurnAroundData.setArrivalTime(data.getArrivalTime());
+            waitingAndTurnAroundData.setBurstTime(data.getBurstTime());
+            waitingAndTurnAroundData.calculateWaitingAndTurnAroundTime(burstTime);
+            waitingAndTurnAroundTime->insertAtBack(waitingAndTurnAroundData);
+            
+            this->deleteNode(data.getProcessId());
+        }
         
-        tempData.setProcessID(data.getProcessId());
-        tempData.setArrivalTime(burstTime);
-        burstTime += data.getBurstTime();
-        tempData.setBurstTime(burstTime);
-        
-        newTempLinkedList->insertAtBack(tempData);
-        
-        waitingAndTurnAroundData.setProcessID(data.getProcessId());
-        waitingAndTurnAroundData.setArrivalTime(data.getArrivalTime());
-        waitingAndTurnAroundData.setBurstTime(data.getBurstTime());
-        waitingAndTurnAroundData.calculateWaitingAndTurnAroundTime(burstTime);
-        waitingAndTurnAroundTime->insertAtBack(waitingAndTurnAroundData);
-        
-        this->deleteNode(data.getProcessId());
         this->SJF(newTempLinkedList, waitingAndTurnAroundTime, burstTime, 1, errorID);
     }
 }
@@ -367,6 +395,8 @@ void LinkedList :: SRTF(TempLinkedList *newTempLinkedList, int burstTime,
     LinkedListDataNode data, data2;
     TempLinkedListNodeData tempData;
     
+    bool shouldSkip = false;
+    
     if(!this->isEmpty()) {
         temp = this->head;
         
@@ -378,45 +408,62 @@ void LinkedList :: SRTF(TempLinkedList *newTempLinkedList, int burstTime,
             data2 = findSmallestBurstTime(burstTime);
             
             if(data2.getProcessId() == "") {
-                errorID = "Nothing arrived after Process: "+errorID+" was executed\nCheck Arrival Time for the Process that arrives after "+errorID;
-                throw runtime_error(errorID);
+                shouldSkip = true;
             }
             
-            while(temp != NULL) {
-                if(temp->getData().getProcessId() == data2.getProcessId()) {
-                    data = temp->getData();
+            if (!shouldSkip) {
+                while(temp != NULL) {
+                    if(temp->getData().getProcessId() == data2.getProcessId()) {
+                        data = temp->getData();
+                        break;
+                    }
+                    temp = temp->getNextNode();
+                }
+            }
+        }
+        
+        if (shouldSkip) {
+            data.setArrivalTime(burstTime);
+            
+            burstTime += 1;
+            data.setBurstTime(burstTime);
+            data.setProcessID("-");
+            
+            tempData.setProcessID(data.getProcessId());
+            tempData.setArrivalTime(data.getArrivalTime());
+            tempData.setBurstTime(data.getBurstTime());
+            
+            newTempLinkedList->insertAtBack(tempData);
+        }
+        else {
+            tempBurstTime = data.getBurstTime();
+            errorID = data.getProcessId();
+            
+            for(int i = 0; i < tempBurstTime; i++) {
+                burstTime++;
+                data.setBurstTime(data.getBurstTime()-1);
+                temp->setData(data);
+                data2 = findSmallestBurstTime(burstTime);
+                
+                if(data.getProcessId() == data2.getProcessId()) {
+                    /*Do Nothing*/
+                }
+                else {
                     break;
                 }
-                temp = temp->getNextNode();
             }
-        }
-        
-        tempBurstTime = data.getBurstTime();
-        errorID = data.getProcessId();
-        
-        for(int i = 0; i < tempBurstTime; i++) {
-            burstTime++;
-            data.setBurstTime(data.getBurstTime()-1);
-            temp->setData(data);
-            data2 = findSmallestBurstTime(burstTime);
             
-            if(data.getProcessId() == data2.getProcessId()) {
-                /*Do Nothing*/
-            }
-            else {
-                break;
+            tempData.setProcessID(data.getProcessId());
+            tempData.setArrivalTime(arrivalTime);
+            tempData.setBurstTime(burstTime);
+            newTempLinkedList->insertAtBack(tempData);
+            arrivalTime = burstTime;
+            
+            if(temp->getData().getBurstTime() == 0) {
+                this->deleteNode(temp->getData().getProcessId());
             }
         }
         
-        tempData.setProcessID(data.getProcessId());
-        tempData.setArrivalTime(arrivalTime);
-        tempData.setBurstTime(burstTime);
-        newTempLinkedList->insertAtBack(tempData);
-        arrivalTime = burstTime;
-        
-        if(temp->getData().getBurstTime() == 0) {
-            this->deleteNode(temp->getData().getProcessId());
-        }
         this->SRTF(newTempLinkedList, burstTime, arrivalTime, 1, errorID);
     }
 }
@@ -429,6 +476,7 @@ void LinkedList :: nonPreEmptivePriority(int priorityLevel, TempLinkedList *newT
     LinkedListDataNode data;
     TempLinkedListNodeData tempData;
     WaitingAndTurnAroundTimeDataNode waitingAndTurnAroundData;
+    bool shouldSkip = false;
     
     if(!this->isEmpty()) {
         temp = this->head;
@@ -436,26 +484,40 @@ void LinkedList :: nonPreEmptivePriority(int priorityLevel, TempLinkedList *newT
         data = this->findHighestPriority(burstTime, priorityLevel);
         
         if(data.getProcessId() == "") {
-            errorID = "Nothing arrived after Process: "+errorID+" was executed\nCheck Arrival Time for the Process that arrives after "+errorID;
-            throw runtime_error(errorID);
+            shouldSkip = true;
         }
         
-        errorID = data.getProcessId();
-        
-        tempData.setProcessID(data.getProcessId());
-        tempData.setArrivalTime(burstTime);
-        burstTime += data.getBurstTime();
-        tempData.setBurstTime(burstTime);
-        
-        newTempLinkedList->insertAtBack(tempData);
-        
-        waitingAndTurnAroundData.setProcessID(data.getProcessId());
-        waitingAndTurnAroundData.setArrivalTime(data.getArrivalTime());
-        waitingAndTurnAroundData.setBurstTime(data.getBurstTime());
-        waitingAndTurnAroundData.calculateWaitingAndTurnAroundTime(burstTime);
-        waitingAndTurnAroundTime->insertAtBack(waitingAndTurnAroundData);
-        
-        this->deleteNode(data.getProcessId());
+        if (shouldSkip) {
+            data.setArrivalTime(burstTime);
+            
+            burstTime += 1;
+            data.setBurstTime(burstTime);
+            data.setProcessID("-");
+            
+            tempData.setProcessID(data.getProcessId());
+            tempData.setArrivalTime(data.getArrivalTime());
+            tempData.setBurstTime(data.getBurstTime());
+            
+            newTempLinkedList->insertAtBack(tempData);
+        }
+        else {
+            errorID = data.getProcessId();
+            
+            tempData.setProcessID(data.getProcessId());
+            tempData.setArrivalTime(burstTime);
+            burstTime += data.getBurstTime();
+            tempData.setBurstTime(burstTime);
+            
+            newTempLinkedList->insertAtBack(tempData);
+            
+            waitingAndTurnAroundData.setProcessID(data.getProcessId());
+            waitingAndTurnAroundData.setArrivalTime(data.getArrivalTime());
+            waitingAndTurnAroundData.setBurstTime(data.getBurstTime());
+            waitingAndTurnAroundData.calculateWaitingAndTurnAroundTime(burstTime);
+            waitingAndTurnAroundTime->insertAtBack(waitingAndTurnAroundData);
+            
+            this->deleteNode(data.getProcessId());
+        }
         this->nonPreEmptivePriority(priorityLevel, newTempLinkedList, waitingAndTurnAroundTime, burstTime, errorID);
     }
 }
@@ -496,8 +558,11 @@ void LinkedList :: preEmptivePriority(int priorityLevel, TempLinkedList *newTemp
             
             data2 = this->findHighestPriority(burstTime, priorityLevel);
             
+            cout << "data2.getProcessId(): "<<data2.getProcessId()<<endl;
+            
             if(data2.getProcessId() == data.getProcessId()) {
                 /*Do Nothing*/
+                cout << "doing nothing: " << data2.getProcessId() << endl;
             }
             else {
                 break;
@@ -535,6 +600,23 @@ void LinkedList :: roundRobin(Queue *queue, TempLinkedList *newTempLinkedList,
         }
         else {
             data = queue->dequeue();
+            
+            if (data.getArrivalTime() > burstTime) {
+                LinkedListDataNode tempNode;
+                TempLinkedListNodeData tempData2;
+                
+                tempNode.setArrivalTime(burstTime);
+                
+                burstTime += 1;
+                tempNode.setBurstTime(burstTime);
+                tempNode.setProcessID("-");
+                
+                tempData2.setProcessID(tempNode.getProcessId());
+                tempData2.setArrivalTime(tempNode.getArrivalTime());
+                tempData2.setBurstTime(tempNode.getBurstTime());
+                
+                newTempLinkedList->insertAtBack(tempData2);
+            }
             
             while(temp != NULL) {
                 if(temp->getData().getProcessId() == data.getProcessId()) {
@@ -576,6 +658,7 @@ void LinkedList :: roundRobin(Queue *queue, TempLinkedList *newTempLinkedList,
         else if(temp->getData().getBurstTime() == 0) {
             this->deleteNode(temp->getData().getProcessId());
         }
+        
         this->roundRobin(queue, newTempLinkedList, timeQuantum, burstTime, arrivalTime, 1, processId, errorID);
     }
 }
