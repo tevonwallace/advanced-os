@@ -270,7 +270,6 @@ bool ProcessScheduling :: checkStringForDashOperator(string data, int digit[]) {
             digit[(index-1<=0?0:1)] = this->swapCharacterWithInteger(data.at(index));
         }
         else if(data.at(index) == '-') {
-            
             if(isdigit(data.at(0)) && (data.at(1) == '-') && (isdigit(data.at(2)))) {
                 dashFound = true;
             }
