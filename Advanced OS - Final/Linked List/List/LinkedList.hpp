@@ -51,7 +51,8 @@ public:
     void destroy(string schedulingAlgorithm);
     
     // MARK: - Find Arrival Times
-    string findArrivalTime(Queue *Queue, int burstTime, string processId);
+    string findArrivalTime(Queue *Queue, int burstTime, string processId,
+                           int remainingBurstTime);
     
     // MARK: - Find Smallest Burst Time
     LinkedListDataNode findSmallestBurstTime(int burstTime);

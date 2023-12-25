@@ -59,8 +59,8 @@ void LinkedList :: insertAtMiddle(LinkedListDataNode data) {
     LinkedListNode *previousNode, *nextNode, *temp = new LinkedListNode(data, NULL);
     int nodeSize;
     
-    previousNode = head;
-    nextNode = head;
+    previousNode = this->head;
+    nextNode = this->head;
     
     if(temp != NULL) {
         while(previousNode != NULL) {
@@ -240,7 +240,8 @@ void LinkedList :: destroy(string schedulingAlgorithm) {
 }
 
 // MARK: - Find Arrival Times
-string LinkedList :: findArrivalTime(Queue *queue, int burstTime, string processId) {
+string LinkedList :: findArrivalTime(Queue *queue, int burstTime, string processId,
+                                     int remainingBurstTime) {
     LinkedListNode *temp = this->head, *nextTemp = NULL;
     LinkedListDataNode data;
     data.setProcessID(processId);
@@ -257,7 +258,7 @@ string LinkedList :: findArrivalTime(Queue *queue, int burstTime, string process
         temp = temp->getNextNode();
     }
     
-    if(data.getProcessId() == processId) {
+    if(data.getProcessId() == processId && remainingBurstTime == 0) {
         if(queue->isEmpty()) {
             if(!this->isEmpty()) {
                 nextTemp = this->head->getNextNode();
@@ -631,7 +632,7 @@ void LinkedList :: roundRobin(Queue *queue, TempLinkedList *newTempLinkedList,
         else {
             data = queue->dequeue();
             
-            if (data.getArrivalTime() > burstTime) {
+            if(data.getArrivalTime() > burstTime) {
                 LinkedListDataNode tempNode;
                 TempLinkedListNodeData tempData2;
                 
@@ -678,8 +679,8 @@ void LinkedList :: roundRobin(Queue *queue, TempLinkedList *newTempLinkedList,
         
         temp->setData(data);
         
-        processId = findArrivalTime(queue, burstTime, processId);
-        
+        processId = findArrivalTime(queue, burstTime, processId, temp->getData().getBurstTime());
+            
         if(temp->getData().getBurstTime() > 0) {
             queue->enqueue(temp->getData());
         }
