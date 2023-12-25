@@ -40,7 +40,7 @@ bool ProcessScheduling :: isArrayEmpty() {
             count++;
         }
     }
-    return (count == this->NUMBER_OF_SUPPORTED_ALGORITHMS ? true : false);
+    return (count == ProcessScheduling::NUMBER_OF_SUPPORTED_ALGORITHMS ? true : false);
 }
 
 // MARK: - Checking if string only contains white spaces
@@ -58,24 +58,24 @@ bool ProcessScheduling :: isBlankSpace(string data) {//This method is used to ch
 
 // MARK: - Destroying all Lists
 void ProcessScheduling :: destroyLinkedLists() {
-    if(this->tempArray[0] == 1) {
+    if(this->tempArray[0] == ProcessScheduling::FCFS_INDEX) {
         this->fcfsList->destroy("FCFS");
     }
-    if(this->tempArray[1] == 2) {
+    if(this->tempArray[1] == ProcessScheduling::SJF_INDEX) {
         this->sjfList->destroy("SJF");
     }
-    if(this->tempArray[2] == 3) {
+    if(this->tempArray[2] == ProcessScheduling::SRTF_INDEX) {
         this->srtfList->destroy("SRTF");
         this->srtfArrivalList->destroy("SRTF Arrival Time LinkedList");
     }
-    if(this->tempArray[3] == 4) {
+    if(this->tempArray[3] == ProcessScheduling::NON_PRE_EMPTIVE_INDEX) {
         this->nonPreEmptivePriorityList->destroy("Non-PreEmptive Priority");
     }
-    if(this->tempArray[4] == 5) {
+    if(this->tempArray[4] == ProcessScheduling::PRE_EMPTIVE_INDEX) {
         this->preEmptivePriorityList->destroy("PreEmptive Priority");
         this->preEmptiveArrivalList->destroy("PreEmptive Arrival Time LinkedList");
     }
-    if(this->tempArray[5] == 6) {
+    if(this->tempArray[5] == ProcessScheduling::ROUND_ROBIN_INDEX) {
         this->roundRobinList->destroy("Round Robin");
         this->roundRobinArrivalList->destroy("Round Robin Arrival Time LinkedList");
     }
@@ -151,7 +151,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 newDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                 newDataNode.setBurstTime(atoi(burstTime.c_str()));
                 
-                if(this->tempArray[3] == this->NON_PRE_EMPTIVE_INDEX) {
+                if(this->tempArray[3] == ProcessScheduling::NON_PRE_EMPTIVE_INDEX) {
                     this->priority = atoi(priority.c_str());
                     this->validatePriority();
                     
@@ -159,7 +159,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                         this->tempArray[3] = 0;
                     }
                 }
-                if(this->tempArray[4] == this->PRE_EMPTIVE_INDEX) {
+                if(this->tempArray[4] == ProcessScheduling::PRE_EMPTIVE_INDEX) {
                     this->priority = atoi(priority.c_str());
                     this->validatePriority();
                         
@@ -168,15 +168,15 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                     }
                 }
                 
-                if(this->tempArray[0] == this->FCFS_INDEX) {
+                if(this->tempArray[0] == ProcessScheduling::FCFS_INDEX) {
                     this->fcfsList->organizeDataInLinkedList(newDataNode);
                 }
                 
-                if(this->tempArray[1] == this->SJF_INDEX) {
+                if(this->tempArray[1] == ProcessScheduling::SJF_INDEX) {
                     this->sjfList->organizeDataInLinkedList(newDataNode);
                 }
                 
-                if(this->tempArray[2] == this->SRTF_INDEX) {
+                if(this->tempArray[2] == ProcessScheduling::SRTF_INDEX) {
                     arrivalTimeDataNode.setProcessId(processId);
                     arrivalTimeDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                     arrivalTimeDataNode.setBurstTime(atoi(burstTime.c_str()));
@@ -185,7 +185,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                     this->srtfArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
                 }
                 
-                if(this->tempArray[3] == this->NON_PRE_EMPTIVE_INDEX) {
+                if(this->tempArray[3] == ProcessScheduling::NON_PRE_EMPTIVE_INDEX) {
                     if (atoi(priority.c_str()) < 0) {
                         throw runtime_error("\nPriority cannot be a negative number");
                     }
@@ -194,7 +194,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                     this->nonPreEmptivePriorityList->organizeDataInLinkedList(newDataNode);
                 }
                 
-                if(this->tempArray[4] == this->PRE_EMPTIVE_INDEX) {
+                if(this->tempArray[4] == ProcessScheduling::PRE_EMPTIVE_INDEX) {
                     if (atoi(priority.c_str()) < 0) {
                         throw runtime_error("\nPriority cannot be a negative number");
                     }
@@ -208,7 +208,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                     this->preEmptiveArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
                 }
                 
-                if(this->tempArray[5] == this->ROUND_ROBIN_INDEX) {
+                if(this->tempArray[5] == ProcessScheduling::ROUND_ROBIN_INDEX) {
                     arrivalTimeDataNode.setProcessId(processId);
                     arrivalTimeDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                     arrivalTimeDataNode.setBurstTime(atoi(burstTime.c_str()));
@@ -310,8 +310,8 @@ void ProcessScheduling :: checkCharacterForAllProcesses(string data) {
 }
 
 bool ProcessScheduling :: isPriorityScheduling() {
-    return (this->tempArray[3] == this->NON_PRE_EMPTIVE_INDEX)
-    || (this->tempArray[4] == this->PRE_EMPTIVE_INDEX);
+    return (this->tempArray[3] == ProcessScheduling::NON_PRE_EMPTIVE_INDEX)
+    || (this->tempArray[4] == ProcessScheduling::PRE_EMPTIVE_INDEX);
 }
 
 void ProcessScheduling :: start() {
@@ -335,7 +335,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
     LinkedListDataNode newDataNode;
     ArrivalTimeLinkedListDataNode arrivalTimeDataNode;
     
-    for(int index = 0; index < this->NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
+    for(int index = 0; index < ProcessScheduling::NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
         this->tempArray[index] = 0;
     }
     
@@ -358,32 +358,34 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
     }
     else if(dashFound) {
         for(int index = digit[0]; index <= digit[1]; index++) {
-            if(index == this->FCFS_INDEX) {
-                this->tempArray[0] = this->FCFS_INDEX;
-                this->fcfsList = new LinkedList();
-            }
-            else if(index == this->SJF_INDEX) {
-                this->tempArray[1] = this->SJF_INDEX;
-                this->sjfList = new LinkedList();
-            }
-            else if(index == this->SRTF_INDEX) {
-                this->tempArray[2] = this->SRTF_INDEX;
-                this->srtfList = new LinkedList();
-                this->srtfArrivalList = new ArrivalTimeLinkedList();
-            }
-            else if(index == this->NON_PRE_EMPTIVE_INDEX) {
-                this->tempArray[3] = this->NON_PRE_EMPTIVE_INDEX;
-                this->nonPreEmptivePriorityList = new LinkedList();
-            }
-            else if(index == this->PRE_EMPTIVE_INDEX) {
-                this->tempArray[4] = this->PRE_EMPTIVE_INDEX;
-                this->preEmptivePriorityList = new LinkedList();
-                this->preEmptiveArrivalList =  new ArrivalTimeLinkedList();
-            }
-            else if(index == this->ROUND_ROBIN_INDEX) {
-                this->tempArray[5] = this->ROUND_ROBIN_INDEX;
-                this->roundRobinList = new LinkedList();
-                this->roundRobinArrivalList = new ArrivalTimeLinkedList();
+            switch (index) {
+                case ProcessScheduling::FCFS_INDEX:
+                    this->tempArray[0] = ProcessScheduling::FCFS_INDEX;
+                    this->fcfsList = new LinkedList();
+                    break;
+                case ProcessScheduling::SJF_INDEX:
+                    this->tempArray[1] = ProcessScheduling::SJF_INDEX;
+                    this->sjfList = new LinkedList();
+                    break;
+                case ProcessScheduling::SRTF_INDEX:
+                    this->tempArray[2] = ProcessScheduling::SRTF_INDEX;
+                    this->srtfList = new LinkedList();
+                    this->srtfArrivalList = new ArrivalTimeLinkedList();
+                    break;
+                case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
+                    this->tempArray[3] = ProcessScheduling::NON_PRE_EMPTIVE_INDEX;
+                    this->nonPreEmptivePriorityList = new LinkedList();
+                    break;
+                case ProcessScheduling::PRE_EMPTIVE_INDEX:
+                    this->tempArray[4] = ProcessScheduling::PRE_EMPTIVE_INDEX;
+                    this->preEmptivePriorityList = new LinkedList();
+                    this->preEmptiveArrivalList =  new ArrivalTimeLinkedList();
+                    break;
+                case ProcessScheduling::ROUND_ROBIN_INDEX:
+                    this->tempArray[5] = ProcessScheduling::ROUND_ROBIN_INDEX;
+                    this->roundRobinList = new LinkedList();
+                    this->roundRobinArrivalList = new ArrivalTimeLinkedList();
+                    break;
             }
         }
     }
@@ -395,26 +397,28 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
         }
         
         for(int index = 0; index < this->NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
-            if(this->tempArray[index] == this->FCFS_INDEX) {
-                this->fcfsList = new LinkedList();
-            }
-            else if(tempArray[index] == this->SJF_INDEX) {
-                this->sjfList = new LinkedList();
-            }
-            else if(tempArray[index] == this->SRTF_INDEX) {
-                this->srtfList = new LinkedList();
-                this->srtfArrivalList =  new ArrivalTimeLinkedList();
-            }
-            else if(tempArray[index] == this->NON_PRE_EMPTIVE_INDEX) {
-                this->nonPreEmptivePriorityList = new LinkedList();
-            }
-            else if(tempArray[index] == this->PRE_EMPTIVE_INDEX) {
-                this->preEmptivePriorityList = new LinkedList();
-                this->preEmptiveArrivalList =  new ArrivalTimeLinkedList();
-            }
-            else if(tempArray[index] == this->ROUND_ROBIN_INDEX) {
-                this->roundRobinList = new LinkedList();
-                this->roundRobinArrivalList = new ArrivalTimeLinkedList();
+            switch (this->tempArray[index]) {
+                case ProcessScheduling::FCFS_INDEX:
+                    this->fcfsList = new LinkedList();
+                    break;
+                case ProcessScheduling::SJF_INDEX:
+                    this->sjfList = new LinkedList();
+                    break;
+                case ProcessScheduling::SRTF_INDEX:
+                    this->srtfList = new LinkedList();
+                    this->srtfArrivalList =  new ArrivalTimeLinkedList();
+                    break;
+                case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
+                    this->nonPreEmptivePriorityList = new LinkedList();
+                    break;
+                case ProcessScheduling::PRE_EMPTIVE_INDEX:
+                    this->preEmptivePriorityList = new LinkedList();
+                    this->preEmptiveArrivalList = new ArrivalTimeLinkedList();
+                    break;
+                case ProcessScheduling::ROUND_ROBIN_INDEX:
+                    this->roundRobinList = new LinkedList();
+                    this->roundRobinArrivalList = new ArrivalTimeLinkedList();
+                    break;
             }
         }
     }
@@ -473,44 +477,46 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
             newDataNode.setArrivalTime(arrivalTime);
             newDataNode.setBurstTime(burstTime);
             
-            for(int index = 0; index < this->NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
-                if(this->tempArray[index] == this->FCFS_INDEX) {
-                    this->fcfsList->organizeDataInLinkedList(newDataNode);
-                }
-                else if(this->tempArray[index] == this->SJF_INDEX) {
-                    this->sjfList->organizeDataInLinkedList(newDataNode);
-                }
-                else if(this->tempArray[index] == this->SRTF_INDEX) {
-                    this->srtfList->organizeDataInLinkedList(newDataNode);
-                    
-                    arrivalTimeDataNode.setProcessId(processId);
-                    arrivalTimeDataNode.setArrivalTime(arrivalTime);
-                    arrivalTimeDataNode.setBurstTime(burstTime);
-                    
-                    this->srtfArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
-                }
-                else if(this->tempArray[index] == this->NON_PRE_EMPTIVE_INDEX) {
-                    newDataNode.setPriority(priority);
-                    this->nonPreEmptivePriorityList->organizeDataInLinkedList(newDataNode);
-                }
-                else if(this->tempArray[index] == this->PRE_EMPTIVE_INDEX) {
-                    newDataNode.setPriority(priority);
-                    this->preEmptivePriorityList->organizeDataInLinkedList(newDataNode);
-                    
-                    arrivalTimeDataNode.setProcessId(processId);
-                    arrivalTimeDataNode.setArrivalTime(arrivalTime);
-                    arrivalTimeDataNode.setBurstTime(burstTime);
-                    
-                    this->preEmptiveArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
-                }
-                else if(this->tempArray[index] == this->ROUND_ROBIN_INDEX) {
-                    this->roundRobinList->organizeDataInLinkedList(newDataNode);
-                    
-                    arrivalTimeDataNode.setProcessId(processId);
-                    arrivalTimeDataNode.setArrivalTime(arrivalTime);
-                    arrivalTimeDataNode.setBurstTime(burstTime);
-                    
-                    this->roundRobinArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+            for(int index = 0; index < ProcessScheduling::NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
+                switch (this->tempArray[index]) {
+                    case ProcessScheduling::FCFS_INDEX:
+                        this->fcfsList->organizeDataInLinkedList(newDataNode);
+                        break;
+                    case ProcessScheduling::SJF_INDEX:
+                        this->sjfList->organizeDataInLinkedList(newDataNode);
+                        break;
+                    case ProcessScheduling::SRTF_INDEX:
+                        this->srtfList->organizeDataInLinkedList(newDataNode);
+                        
+                        arrivalTimeDataNode.setProcessId(processId);
+                        arrivalTimeDataNode.setArrivalTime(arrivalTime);
+                        arrivalTimeDataNode.setBurstTime(burstTime);
+                        
+                        this->srtfArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                        break;
+                    case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
+                        newDataNode.setPriority(priority);
+                        this->nonPreEmptivePriorityList->organizeDataInLinkedList(newDataNode);
+                        break;
+                    case ProcessScheduling::PRE_EMPTIVE_INDEX:
+                        newDataNode.setPriority(priority);
+                        this->preEmptivePriorityList->organizeDataInLinkedList(newDataNode);
+                        
+                        arrivalTimeDataNode.setProcessId(processId);
+                        arrivalTimeDataNode.setArrivalTime(arrivalTime);
+                        arrivalTimeDataNode.setBurstTime(burstTime);
+                        
+                        this->preEmptiveArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                        break;
+                    case ProcessScheduling::ROUND_ROBIN_INDEX:
+                        this->roundRobinList->organizeDataInLinkedList(newDataNode);
+                        
+                        arrivalTimeDataNode.setProcessId(processId);
+                        arrivalTimeDataNode.setArrivalTime(arrivalTime);
+                        arrivalTimeDataNode.setBurstTime(burstTime);
+                        
+                        this->roundRobinArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                        break;
                 }
             }
         }
@@ -542,7 +548,7 @@ void ProcessScheduling :: processAlgorithms() {
         }
     }
     
-    if(this->tempArray[5] == this->ROUND_ROBIN_INDEX) {
+    if(this->tempArray[5] == ProcessScheduling::ROUND_ROBIN_INDEX) {
         cout << "\nEnter Time Quantum:\t";
         cin >> timeQuantum;
         
@@ -557,57 +563,59 @@ void ProcessScheduling :: processAlgorithms() {
     newTempLinkedList = new TempLinkedList();
     waitingAndTurnAroundTime = new WaitingAndTurnAroundTime();
     
-    for(int index = 0; index < this->NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
-        if(this->tempArray[index] == this->FCFS_INDEX) {
-            cout << "\nFCFS (First Come First Serve) Scheduling"<<endl;
-            this->fcfsList->FCFS(newTempLinkedList, waitingAndTurnAroundTime, 0, 0, "");
-            this->fcfsList->destroy("FCFS");
-            newTempLinkedList->display("FCFS");
-            newTempLinkedList->destroy("FCFS");
-            waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "FCFS");
-        }
-        else if(this->tempArray[index] == this->SJF_INDEX) {
-            cout << "\nSJF (Shortest Job First) Scheduling"<<endl;
-            sjfList->SJF(newTempLinkedList, waitingAndTurnAroundTime, 0, 0, "");
-            this->sjfList->destroy("SJF");
-            newTempLinkedList->display("SJF");
-            newTempLinkedList->destroy("SJF");
-            waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "SJF");
-        }
-        else if(this->tempArray[index] == this->SRTF_INDEX) {
-            cout << "\nSRTF (Shortest Remaining Time First) Scheduling"<<endl;
-            srtfList->SRTF(newTempLinkedList, 0, 0, 0, "");
-            this->srtfList->destroy("SRTF");
-            newTempLinkedList->display("SRTF");
-            newTempLinkedList->calculateWaitingAndTurnAroundTime(srtfArrivalList, "SRTF", this->activateWaitingAndTurnAroundTimeForAllProcesses);
-        }
-        else if(this->tempArray[index] == this->NON_PRE_EMPTIVE_INDEX) {
-            cout << "\nNon-PreEmptive Priority Scheduling"<<endl;
-            this->nonPreEmptivePriorityList->nonPreEmptivePriority(priorityLevel[0], newTempLinkedList, waitingAndTurnAroundTime,nonPreEmptivePriorityList->getHead().getArrivalTime(), "");
-            this->nonPreEmptivePriorityList->destroy("Non-PreEmptive Priority");
-            newTempLinkedList->display("Non-PreEmptive Priority");
-            newTempLinkedList->destroy("Non-PreEmptive Priority");
-            waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "Non-PreEmptive Priority");
-        }
-        else if(this->tempArray[index] == this->PRE_EMPTIVE_INDEX) {
-            cout << "\nPreEmptive Priority Scheduling"<<endl;
-            this-> preEmptivePriorityList->preEmptivePriority(priorityLevel[1], newTempLinkedList, preEmptivePriorityList->getHead().getArrivalTime(), preEmptivePriorityList->getHead().getArrivalTime(), "");
-            this->preEmptivePriorityList->destroy("PreEmptive Priority");
-            newTempLinkedList->display("PreEmptive Priority");
-            newTempLinkedList->calculateWaitingAndTurnAroundTime(preEmptiveArrivalList, "PreEmptive Priority", this->activateWaitingAndTurnAroundTimeForAllProcesses);
-        }
-        else if(this->tempArray[index] == this->ROUND_ROBIN_INDEX) {
-            Queue *queue = new Queue();
-            cout << "\nRound Robin Scheduling"<<endl;
-            this->roundRobinList->roundRobin(queue, newTempLinkedList, timeQuantum, 0, 0, 0, roundRobinList->getHead().getProcessId(), "");
-            this->roundRobinList->destroy("Round Robin");
-            newTempLinkedList->display("Round Robin");
-            newTempLinkedList->calculateWaitingAndTurnAroundTime(roundRobinArrivalList, "Round Robin", this->activateWaitingAndTurnAroundTimeForAllProcesses);
-            queue->destroy();
+    for(int index = 0; index < ProcessScheduling::NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
+        switch (this->tempArray[index]) {
+            case ProcessScheduling::FCFS_INDEX:
+                cout << "\nFCFS (First Come First Serve) Scheduling"<<endl;
+                this->fcfsList->FCFS(newTempLinkedList, waitingAndTurnAroundTime, 0, 0, "");
+                this->fcfsList->destroy("FCFS");
+                newTempLinkedList->display("FCFS");
+                newTempLinkedList->destroy("FCFS");
+                waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "FCFS");
+                break;
+            case ProcessScheduling::SJF_INDEX:
+                cout << "\nSJF (Shortest Job First) Scheduling"<<endl;
+                sjfList->SJF(newTempLinkedList, waitingAndTurnAroundTime, 0, 0, "");
+                this->sjfList->destroy("SJF");
+                newTempLinkedList->display("SJF");
+                newTempLinkedList->destroy("SJF");
+                waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "SJF");
+                break;
+            case ProcessScheduling::SRTF_INDEX:
+                cout << "\nSRTF (Shortest Remaining Time First) Scheduling"<<endl;
+                srtfList->SRTF(newTempLinkedList, 0, 0, 0, "");
+                this->srtfList->destroy("SRTF");
+                newTempLinkedList->display("SRTF");
+                newTempLinkedList->calculateWaitingAndTurnAroundTime(srtfArrivalList, "SRTF", this->activateWaitingAndTurnAroundTimeForAllProcesses);
+                break;
+            case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
+                cout << "\nNon-PreEmptive Priority Scheduling"<<endl;
+                this->nonPreEmptivePriorityList->nonPreEmptivePriority(priorityLevel[0], newTempLinkedList, waitingAndTurnAroundTime,nonPreEmptivePriorityList->getHead().getArrivalTime(), "");
+                this->nonPreEmptivePriorityList->destroy("Non-PreEmptive Priority");
+                newTempLinkedList->display("Non-PreEmptive Priority");
+                newTempLinkedList->destroy("Non-PreEmptive Priority");
+                waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "Non-PreEmptive Priority");
+                break;
+            case ProcessScheduling::PRE_EMPTIVE_INDEX:
+                cout << "\nPreEmptive Priority Scheduling"<<endl;
+                this-> preEmptivePriorityList->preEmptivePriority(priorityLevel[1], newTempLinkedList, preEmptivePriorityList->getHead().getArrivalTime(), preEmptivePriorityList->getHead().getArrivalTime(), "");
+                this->preEmptivePriorityList->destroy("PreEmptive Priority");
+                newTempLinkedList->display("PreEmptive Priority");
+                newTempLinkedList->calculateWaitingAndTurnAroundTime(preEmptiveArrivalList, "PreEmptive Priority", this->activateWaitingAndTurnAroundTimeForAllProcesses);
+                break;
+            case ProcessScheduling::ROUND_ROBIN_INDEX:
+                Queue *queue = new Queue();
+                cout << "\nRound Robin Scheduling"<<endl;
+                this->roundRobinList->roundRobin(queue, newTempLinkedList, timeQuantum, 0, 0, 0, roundRobinList->getHead().getProcessId(), "");
+                this->roundRobinList->destroy("Round Robin");
+                newTempLinkedList->display("Round Robin");
+                newTempLinkedList->calculateWaitingAndTurnAroundTime(roundRobinArrivalList, "Round Robin", this->activateWaitingAndTurnAroundTimeForAllProcesses);
+                queue->destroy();
+                break;
         }
     }
     
-    cout << "\n2 ProcessID's 'might' arrive at the same time and is adjacent in opposite\nplaces ([P6,P4] == [P4,P6]). Depending on your inserting at middle"<<endl;
+    cout << "\nTwo Process ids 'might' arrive at the same time and is adjacent in opposite\nplaces ([P6,P4] == [P4,P6]). Depending on your inserting at middle"<<endl;
     
     cin.sync();
     cin.get();
