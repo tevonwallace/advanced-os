@@ -19,10 +19,6 @@ private:
     LinkedListNode *head, *tail;
     int count;
     
-public:
-    // MARK: - Constructor
-    LinkedList();
-    
     // MARK: - Insertions
     void insertAtFront(LinkedListDataNode data);
     
@@ -36,19 +32,7 @@ public:
     // MARK: - Check if Empty
     bool isEmpty();
     
-    // MARK: - Head and Tail Accessors
-    LinkedListDataNode getHead() const;
-    
     LinkedListDataNode getTail() const;
-    
-    // MARK: - Displaying the contents of the list
-    void display(int headerCount = 3);
-    
-    // MARK: - Organizing LinkedList
-    void organizeDataInLinkedList(LinkedListDataNode data);
-    
-    // MARK: - Destroying LinkedList
-    void destroy(string schedulingAlgorithm);
     
     // MARK: - Find Arrival Times
     string findArrivalTime(Queue *Queue, int burstTime, string processId,
@@ -59,6 +43,22 @@ public:
     
     // MARK: - Find Highest Priority
     LinkedListDataNode findHighestPriority(int burstTime, int priorityLevel);
+    
+public:
+    // MARK: - Constructor
+    LinkedList();
+    
+    // MARK: - Head and Tail Accessors
+    LinkedListDataNode getHead() const;
+    
+    // MARK: - Destroying LinkedList
+    void destroy(string schedulingAlgorithm);
+    
+    // MARK: - Displaying the contents of the list
+    void display(int headerCount = 3);
+    
+    // MARK: - Organizing LinkedList
+    void organizeDataInLinkedList(LinkedListDataNode data);
     
     // MARK: - First Come First Serve Scheduling
     void FCFS(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTime *waitingAndTurnAroundTime,

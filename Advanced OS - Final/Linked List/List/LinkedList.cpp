@@ -133,9 +133,8 @@ void LinkedList :: deleteNode(string processId) {  // Change this to delete by P
                     this->count--;
                     break;
                 }
-                if(counter <= 1) {
-                    /* Do Nothing */ }
-                else {
+                
+                if(counter > 1) {
                     prevNode = prevNode->getNextNode();
                 }
             }
@@ -208,9 +207,10 @@ void LinkedList :: display(int headerCount) {
     
     cout << "|" << dashes << "|" << endl;
     
+    string tab = "\t";
+    
     while (temp != NULL) {
         LinkedListDataNode data = temp->getData();
-        string tab = "\t";
         
         cout << "|" << tab << data.getProcessId() << tab << "|" << tab << data.getArrivalTime()
         << tab << "|" << tab << data.getBurstTime() << tab << "|";
@@ -484,10 +484,7 @@ void LinkedList :: SRTF(TempLinkedList *newTempLinkedList, int burstTime,
                 temp->setData(data);
                 data2 = this->findSmallestBurstTime(burstTime);
                 
-                if(data.getProcessId() == data2.getProcessId()) {
-                    /*Do Nothing*/
-                }
-                else {
+                if(data.getProcessId() != data2.getProcessId()) {
                     break;
                 }
             }
@@ -592,10 +589,7 @@ void LinkedList :: preEmptivePriority(int priorityLevel, TempLinkedList *newTemp
             
             data2 = this->findHighestPriority(burstTime, priorityLevel);
             
-            if(data2.getProcessId() == data.getProcessId()) {
-                /*Do Nothing*/
-            }
-            else {
+            if(data2.getProcessId() != data.getProcessId()) {
                 break;
             }
         }
