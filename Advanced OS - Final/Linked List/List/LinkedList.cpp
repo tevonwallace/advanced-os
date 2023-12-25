@@ -11,6 +11,7 @@
 // MARK: - Constructor
 LinkedList :: LinkedList() {
     this->head = this->tail = NULL;
+    this->count = 0;
 }
 
 // MARK: - Insertions
@@ -21,10 +22,12 @@ void LinkedList :: insertAtFront(LinkedListDataNode data) {
         if(this->isEmpty()) {
             this->head = temp;
             this->tail = temp;
+            this->count++;
         }
         else {
             temp->setNextNode(this->head);
             this->head = temp;
+            this->count++;
         }
     }
     else {
@@ -39,10 +42,12 @@ void LinkedList :: insertAtBack(LinkedListDataNode data) {
         if(this->isEmpty()) {
             this->head = temp;
             this->tail = temp;
+            this->count++;
         }
         else {
             this->tail->setNextNode(temp);
             this->tail = temp;
+            this->count++;
         }
     } else
     {
@@ -67,6 +72,7 @@ void LinkedList :: insertAtMiddle(LinkedListDataNode data) {
                 if(data.getArrivalTime() <= nodeSize) {
                     previousNode->setNextNode(temp);
                     temp->setNextNode(nextNode);
+                    this->count++;
                     break;
                 }
                 previousNode = previousNode->getNextNode();
@@ -101,6 +107,7 @@ void LinkedList :: deleteNode(string processId) {  // Change this to delete by P
                 this->head = this->head->getNextNode();
             }
             delete temp;
+            this->count--;
         }
         else if(this->tail->getData().getProcessId() == processId) {
             temp = this->head;
@@ -111,6 +118,7 @@ void LinkedList :: deleteNode(string processId) {  // Change this to delete by P
             }
             prevNode->setNextNode(NULL);
             this->tail = prevNode;
+            this->count--;
             delete temp;
         }
         else {
@@ -122,6 +130,7 @@ void LinkedList :: deleteNode(string processId) {  // Change this to delete by P
                 if(temp->getData().getProcessId() == processId) {
                     prevNode->setNextNode(current);
                     delete temp;
+                    this->count--;
                     break;
                 }
                 if(counter <= 1) {
@@ -183,6 +192,40 @@ void LinkedList :: organizeDataInLinkedList(LinkedListDataNode data) {
             this->insertAtFront(data);
         }
     }
+}
+
+// MARK: - Displaying the contents of the list
+void LinkedList :: display(int headerCount) {
+    LinkedListNode *temp = this->head;
+    
+    string dashes = "";
+    
+    for (int index = 0; index < headerCount; index++) {
+        dashes += "--------";
+    }
+    
+    dashes = dashes.substr(0, dashes.length()-1);
+    
+    cout << "|" << dashes << "|" << endl;
+    
+    while (temp != NULL) {
+        LinkedListDataNode data = temp->getData();
+        string tab = "\t";
+        
+        cout << "|" << tab << data.getProcessId() << tab << "|" << tab << data.getArrivalTime()
+        << tab << "|" << tab << data.getBurstTime() << tab << "|";
+        
+        if (headerCount == 4) {
+            cout << tab << data.getPriority() << tab << "|" << endl;
+        }
+        else {
+            cout << endl;
+        }
+        
+        temp = temp->getNextNode();
+    }
+    
+    cout << "|" << dashes << "|\n" << endl;
 }
 
 // MARK: - Destroying LinkedList

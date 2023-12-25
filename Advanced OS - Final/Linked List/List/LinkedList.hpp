@@ -17,6 +17,7 @@ class LinkedList {
 private:
     // MARK: - Declaring Variables
     LinkedListNode *head, *tail;
+    int count;
     
 public:
     // MARK: - Constructor
@@ -39,6 +40,9 @@ public:
     LinkedListDataNode getHead() const;
     
     LinkedListDataNode getTail() const;
+    
+    // MARK: - Displaying the contents of the list
+    void display(int headerCount = 3);
     
     // MARK: - Organizing LinkedList
     void organizeDataInLinkedList(LinkedListDataNode data);

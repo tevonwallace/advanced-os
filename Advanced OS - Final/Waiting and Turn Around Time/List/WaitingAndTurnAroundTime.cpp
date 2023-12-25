@@ -45,7 +45,7 @@ bool WaitingAndTurnAroundTime :: isEmpty() {
 
 // MARK: - Display Waiting & Turn Around Time
 void WaitingAndTurnAroundTime :: display(bool activateWaitingAndTurnAroundTimeForAllProcesses, string schedulingAlgorithm) {
-    WaitingAndTurnAroundTimeNode *temp = head;
+    WaitingAndTurnAroundTimeNode *temp = this->head;
     double waitingTime = 0.0, turnAroundTime = 0.0;
     
     if (activateWaitingAndTurnAroundTimeForAllProcesses) {

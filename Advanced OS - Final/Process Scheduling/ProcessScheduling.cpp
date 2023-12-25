@@ -569,6 +569,7 @@ void ProcessScheduling :: processAlgorithms() {
         switch (this->tempArray[index]) {
             case ProcessScheduling::FCFS_INDEX:
                 cout << "\nFCFS (First Come First Serve) Scheduling"<<endl;
+                this->fcfsList->display();
                 this->fcfsList->FCFS(newTempLinkedList, waitingAndTurnAroundTime, 0, 0, "");
                 this->fcfsList->destroy("FCFS");
                 newTempLinkedList->display("FCFS");
@@ -577,7 +578,8 @@ void ProcessScheduling :: processAlgorithms() {
                 break;
             case ProcessScheduling::SJF_INDEX:
                 cout << "\nSJF (Shortest Job First) Scheduling"<<endl;
-                sjfList->SJF(newTempLinkedList, waitingAndTurnAroundTime, 0, 0, "");
+                this->sjfList->display();
+                this->sjfList->SJF(newTempLinkedList, waitingAndTurnAroundTime, 0, 0, "");
                 this->sjfList->destroy("SJF");
                 newTempLinkedList->display("SJF");
                 newTempLinkedList->destroy("SJF");
@@ -585,13 +587,15 @@ void ProcessScheduling :: processAlgorithms() {
                 break;
             case ProcessScheduling::SRTF_INDEX:
                 cout << "\nSRTF (Shortest Remaining Time First) Scheduling"<<endl;
-                srtfList->SRTF(newTempLinkedList, 0, 0, 0, "");
+                this->srtfList->display();
+                this->srtfList->SRTF(newTempLinkedList, 0, 0, 0, "");
                 this->srtfList->destroy("SRTF");
                 newTempLinkedList->display("SRTF");
                 newTempLinkedList->calculateWaitingAndTurnAroundTime(srtfArrivalList, "SRTF", this->activateWaitingAndTurnAroundTimeForAllProcesses);
                 break;
             case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
                 cout << "\nNon-PreEmptive Priority Scheduling"<<endl;
+                this->nonPreEmptivePriorityList->display(4);
                 this->nonPreEmptivePriorityList->nonPreEmptivePriority(priorityLevel[0], newTempLinkedList, waitingAndTurnAroundTime,nonPreEmptivePriorityList->getHead().getArrivalTime(), "");
                 this->nonPreEmptivePriorityList->destroy("Non-PreEmptive Priority");
                 newTempLinkedList->display("Non-PreEmptive Priority");
@@ -600,6 +604,7 @@ void ProcessScheduling :: processAlgorithms() {
                 break;
             case ProcessScheduling::PRE_EMPTIVE_INDEX:
                 cout << "\nPreEmptive Priority Scheduling"<<endl;
+                this->preEmptivePriorityList->display(4);
                 this-> preEmptivePriorityList->preEmptivePriority(priorityLevel[1], newTempLinkedList, preEmptivePriorityList->getHead().getArrivalTime(), preEmptivePriorityList->getHead().getArrivalTime(), "");
                 this->preEmptivePriorityList->destroy("PreEmptive Priority");
                 newTempLinkedList->display("PreEmptive Priority");
@@ -608,6 +613,7 @@ void ProcessScheduling :: processAlgorithms() {
             case ProcessScheduling::ROUND_ROBIN_INDEX:
                 Queue *queue = new Queue();
                 cout << "\nRound Robin Scheduling"<<endl;
+                this->roundRobinList->display();
                 this->roundRobinList->roundRobin(queue, newTempLinkedList, timeQuantum, 0, 0, 0, roundRobinList->getHead().getProcessId(), "");
                 this->roundRobinList->destroy("Round Robin");
                 newTempLinkedList->display("Round Robin");
