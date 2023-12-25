@@ -61,28 +61,28 @@ public:
     
     // MARK: - First Come First Serve Scheduling
     void FCFS(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTime *waitingAndTurnAroundTime,
-              int burstTime, int ran, string errorID) throw(runtime_error);
+              int burstTime, int ran) throw(runtime_error);
     
     // MARK: - Shortest Job First Scheduling
     void SJF(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTime *waitingAndTurnAroundTime,
-             int burstTime, int ran, string errorID) throw(runtime_error);
+             int burstTime, int ran) throw(runtime_error);
     
     // MARK: - Shortest Remaining Time First Scheduling
     void SRTF(TempLinkedList *newTempLinkedList, int burstTime,
-              int arrivalTime, int ran, string errorID) throw(runtime_error);
+              int arrivalTime, int ran) throw(runtime_error);
     
     // MARK: - Non-Preemptive Priority Scheduling
     void nonPreEmptivePriority(int priorityLevel, TempLinkedList *newTempLinkedList,
                                WaitingAndTurnAroundTime *waitingAndTurnAroundTime,
-                               int burstTime, string errorID) throw(runtime_error);
+                               int burstTime) throw(runtime_error);
     
     // MARK: - Preemptive Priority Scheduling
     void preEmptivePriority(int priorityLevel, TempLinkedList *newTempLinkedList,
-                            int burstTime, int arrivalTime, string errorID) throw(runtime_error);
+                            int burstTime, int arrivalTime) throw(runtime_error);
     
     // MARK: - Round Robin Scheduling
     void roundRobin(Queue *Queue, TempLinkedList *newTempLinkedList,
                     int timeQuantum, int burstTime, int arrivalTime,
-                    int ran, string processId, string errorID) throw(runtime_error);
+                    int ran, string processId) throw(runtime_error);
 };
 #endif /* LinkedList_hpp */
