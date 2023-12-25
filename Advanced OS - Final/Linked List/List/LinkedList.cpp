@@ -387,7 +387,7 @@ void LinkedList :: SJF(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTi
             burstTime = temp->getData().getArrivalTime();
         }
         
-        data = findSmallestBurstTime(burstTime);
+        data = this->findSmallestBurstTime(burstTime);
         
         if(data.getProcessId() == "") {
             shouldSkip = true;
@@ -445,7 +445,7 @@ void LinkedList :: SRTF(TempLinkedList *newTempLinkedList, int burstTime,
             arrivalTime = burstTime = data.getArrivalTime();
         }
         else {
-            data2 = findSmallestBurstTime(burstTime);
+            data2 = this->findSmallestBurstTime(burstTime);
             
             if(data2.getProcessId() == "") {
                 shouldSkip = true;
@@ -482,7 +482,7 @@ void LinkedList :: SRTF(TempLinkedList *newTempLinkedList, int burstTime,
                 burstTime++;
                 data.setBurstTime(data.getBurstTime()-1);
                 temp->setData(data);
-                data2 = findSmallestBurstTime(burstTime);
+                data2 = this->findSmallestBurstTime(burstTime);
                 
                 if(data.getProcessId() == data2.getProcessId()) {
                     /*Do Nothing*/
@@ -679,7 +679,7 @@ void LinkedList :: roundRobin(Queue *queue, TempLinkedList *newTempLinkedList,
         
         temp->setData(data);
         
-        processId = findArrivalTime(queue, burstTime, processId, temp->getData().getBurstTime());
+        processId = this->findArrivalTime(queue, burstTime, processId, temp->getData().getBurstTime());
             
         if(temp->getData().getBurstTime() > 0) {
             queue->enqueue(temp->getData());
