@@ -13,8 +13,8 @@
 
 using namespace std;
 
-//Turn Around Time = Time Finished/Completed - Arrival Time
-//Waiting Time =  Turn Around Time - Burst Time
+// Turn Around Time = Time Finished/Completed - Arrival Time
+// Waiting Time =  Turn Around Time - Burst Time
 
 class WaitingAndTurnAroundTimeDataNode {
 private:
