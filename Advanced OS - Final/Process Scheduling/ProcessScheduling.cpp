@@ -612,7 +612,7 @@ void ProcessScheduling :: processAlgorithms() {
                 break;
             case ProcessScheduling::ROUND_ROBIN_INDEX:
                 Queue *queue = new Queue();
-                cout << "\nRound Robin Scheduling"<<endl;
+                cout << "\nRound Robin Scheduling (Time Quantum: "<< timeQuantum<< ")"<<endl;
                 this->roundRobinList->display();
                 this->roundRobinList->roundRobin(queue, newTempLinkedList, timeQuantum, 0, 0, 0, this->roundRobinList->getHead().getProcessId());
                 this->roundRobinList->destroy("Round Robin");
