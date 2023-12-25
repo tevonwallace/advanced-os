@@ -23,9 +23,6 @@
 		6586649A2B38FAED000F38E0 /* WaitingAndTurnAroundTimeDataNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 658664982B38FAED000F38E0 /* WaitingAndTurnAroundTimeDataNode.cpp */; };
 		6586649E2B38FB24000F38E0 /* WaitingAndTurnAroundTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6586649C2B38FB24000F38E0 /* WaitingAndTurnAroundTime.cpp */; };
 		658664A22B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 658664A02B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.cpp */; };
-		658664A72B38FD17000F38E0 /* process.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 658664A62B38FCD6000F38E0 /* process.txt */; };
-		658664A82B38FD17000F38E0 /* process2.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 658664A42B38FCD6000F38E0 /* process2.txt */; };
-		658664A92B38FD17000F38E0 /* process3.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 658664A52B38FCD6000F38E0 /* process3.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,9 +32,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				658664A72B38FD17000F38E0 /* process.txt in CopyFiles */,
-				658664A82B38FD17000F38E0 /* process2.txt in CopyFiles */,
-				658664A92B38FD17000F38E0 /* process3.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -76,9 +70,6 @@
 		6586649D2B38FB24000F38E0 /* WaitingAndTurnAroundTime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WaitingAndTurnAroundTime.hpp; sourceTree = "<group>"; };
 		658664A02B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WaitingAndTurnAroundTimeNode.cpp; sourceTree = "<group>"; };
 		658664A12B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WaitingAndTurnAroundTimeNode.hpp; sourceTree = "<group>"; };
-		658664A42B38FCD6000F38E0 /* process2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = process2.txt; sourceTree = "<group>"; };
-		658664A52B38FCD6000F38E0 /* process3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = process3.txt; sourceTree = "<group>"; };
-		658664A62B38FCD6000F38E0 /* process.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = process.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +102,6 @@
 		6586645A2B38F75E000F38E0 /* Advanced OS - Final */ = {
 			isa = PBXGroup;
 			children = (
-				658664A32B38FCC9000F38E0 /* Data Files */,
 				658664732B38F8ED000F38E0 /* Arrival Time */,
 				658664662B38F7F4000F38E0 /* Linked List */,
 				658664622B38F79A000F38E0 /* Process Scheduling */,
@@ -305,16 +295,6 @@
 				658664A12B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.hpp */,
 			);
 			path = Node;
-			sourceTree = "<group>";
-		};
-		658664A32B38FCC9000F38E0 /* Data Files */ = {
-			isa = PBXGroup;
-			children = (
-				658664A62B38FCD6000F38E0 /* process.txt */,
-				658664A42B38FCD6000F38E0 /* process2.txt */,
-				658664A52B38FCD6000F38E0 /* process3.txt */,
-			);
-			path = "Data Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
