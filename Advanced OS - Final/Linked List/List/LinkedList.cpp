@@ -173,7 +173,7 @@ LinkedListDataNode LinkedList :: getTail() const {
 }
 
 // MARK: - Organizing LinkedList
-void LinkedList :: organizeDataInLinkedList(LinkedListDataNode data) {
+void LinkedList :: organize(LinkedListDataNode data) {
     if(this->isEmpty()) {
         this->insertAtBack(data);
     }

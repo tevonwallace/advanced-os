@@ -169,11 +169,11 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 }
                 
                 if(this->tempArray[0] == ProcessScheduling::FCFS_INDEX) {
-                    this->fcfsList->organizeDataInLinkedList(newDataNode);
+                    this->fcfsList->organize(newDataNode);
                 }
                 
                 if(this->tempArray[1] == ProcessScheduling::SJF_INDEX) {
-                    this->sjfList->organizeDataInLinkedList(newDataNode);
+                    this->sjfList->organize(newDataNode);
                 }
                 
                 if(this->tempArray[2] == ProcessScheduling::SRTF_INDEX) {
@@ -181,8 +181,8 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                     arrivalTimeDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                     arrivalTimeDataNode.setBurstTime(atoi(burstTime.c_str()));
                     
-                    this->srtfList->organizeDataInLinkedList(newDataNode);
-                    this->srtfArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                    this->srtfList->organize(newDataNode);
+                    this->srtfArrivalList->organize(arrivalTimeDataNode);
                 }
                 
                 if(this->tempArray[3] == ProcessScheduling::NON_PRE_EMPTIVE_INDEX) {
@@ -191,7 +191,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                     }
                 
                     newDataNode.setPriority(atoi(priority.c_str()));
-                    this->nonPreEmptivePriorityList->organizeDataInLinkedList(newDataNode);
+                    this->nonPreEmptivePriorityList->organize(newDataNode);
                 }
                 
                 if(this->tempArray[4] == ProcessScheduling::PRE_EMPTIVE_INDEX) {
@@ -204,8 +204,8 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                     arrivalTimeDataNode.setBurstTime(atoi(burstTime.c_str()));
                     
                     newDataNode.setPriority(atoi(priority.c_str()));
-                    this->preEmptivePriorityList->organizeDataInLinkedList(newDataNode);
-                    this->preEmptiveArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                    this->preEmptivePriorityList->organize(newDataNode);
+                    this->preEmptiveArrivalList->organize(arrivalTimeDataNode);
                 }
                 
                 if(this->tempArray[5] == ProcessScheduling::ROUND_ROBIN_INDEX) {
@@ -213,8 +213,8 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                     arrivalTimeDataNode.setArrivalTime(atoi(arrivalTime.c_str()));
                     arrivalTimeDataNode.setBurstTime(atoi(burstTime.c_str()));
                     
-                    this->roundRobinList->organizeDataInLinkedList(newDataNode);
-                    this->roundRobinArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                    this->roundRobinList->organize(newDataNode);
+                    this->roundRobinArrivalList->organize(arrivalTimeDataNode);
                 }
             }
         }
@@ -481,42 +481,42 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
             for(int index = 0; index < ProcessScheduling::NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
                 switch (this->tempArray[index]) {
                     case ProcessScheduling::FCFS_INDEX:
-                        this->fcfsList->organizeDataInLinkedList(newDataNode);
+                        this->fcfsList->organize(newDataNode);
                         break;
                     case ProcessScheduling::SJF_INDEX:
-                        this->sjfList->organizeDataInLinkedList(newDataNode);
+                        this->sjfList->organize(newDataNode);
                         break;
                     case ProcessScheduling::SRTF_INDEX:
-                        this->srtfList->organizeDataInLinkedList(newDataNode);
+                        this->srtfList->organize(newDataNode);
                         
                         arrivalTimeDataNode.setProcessId(processId);
                         arrivalTimeDataNode.setArrivalTime(arrivalTime);
                         arrivalTimeDataNode.setBurstTime(burstTime);
                         
-                        this->srtfArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                        this->srtfArrivalList->organize(arrivalTimeDataNode);
                         break;
                     case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
                         newDataNode.setPriority(this->priority);
-                        this->nonPreEmptivePriorityList->organizeDataInLinkedList(newDataNode);
+                        this->nonPreEmptivePriorityList->organize(newDataNode);
                         break;
                     case ProcessScheduling::PRE_EMPTIVE_INDEX:
                         newDataNode.setPriority(this->priority);
-                        this->preEmptivePriorityList->organizeDataInLinkedList(newDataNode);
+                        this->preEmptivePriorityList->organize(newDataNode);
                         
                         arrivalTimeDataNode.setProcessId(processId);
                         arrivalTimeDataNode.setArrivalTime(arrivalTime);
                         arrivalTimeDataNode.setBurstTime(burstTime);
                         
-                        this->preEmptiveArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                        this->preEmptiveArrivalList->organize(arrivalTimeDataNode);
                         break;
                     case ProcessScheduling::ROUND_ROBIN_INDEX:
-                        this->roundRobinList->organizeDataInLinkedList(newDataNode);
+                        this->roundRobinList->organize(newDataNode);
                         
                         arrivalTimeDataNode.setProcessId(processId);
                         arrivalTimeDataNode.setArrivalTime(arrivalTime);
                         arrivalTimeDataNode.setBurstTime(burstTime);
                         
-                        this->roundRobinArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
+                        this->roundRobinArrivalList->organize(arrivalTimeDataNode);
                         break;
                 }
             }

@@ -20,10 +20,6 @@ private:
     double waitingTime, turnAroundTime;
     int count;
     
-public:
-    // MARK: - Constructor
-    ArrivalTimeLinkedList();
-    
     //MARK: - Insertions
     void insertAtFront(ArrivalTimeLinkedListDataNode data);
     
@@ -31,13 +27,7 @@ public:
     
     void insertAtMiddle(ArrivalTimeLinkedListDataNode data);
     
-    // MARK: - Head and Tail Accessors
-    ArrivalTimeLinkedListDataNode getHead() const;
-    
     ArrivalTimeLinkedListDataNode getTail() const;
-    
-    // MARK: - Organizing List
-    void organizeDataInLinkedList(ArrivalTimeLinkedListDataNode data);
     
     // MARK: - Check If Empty
     bool isEmpty();
@@ -53,6 +43,16 @@ public:
     double getTurnAroundTime() const;
     
     int getCount() const;
+    
+public:
+    // MARK: - Constructor
+    ArrivalTimeLinkedList();
+    
+    // MARK: - Head and Tail Accessors
+    ArrivalTimeLinkedListDataNode getHead() const;
+    
+    // MARK: - Organizing List
+    void organize(ArrivalTimeLinkedListDataNode data);
     
     double calculateWaitingTime() const;
     

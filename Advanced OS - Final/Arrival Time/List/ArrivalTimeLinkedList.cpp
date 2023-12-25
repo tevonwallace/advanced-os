@@ -109,7 +109,7 @@ ArrivalTimeLinkedListDataNode ArrivalTimeLinkedList :: getTail() const {
 }
 
 // MARK: - Organizing List
-void ArrivalTimeLinkedList :: organizeDataInLinkedList(ArrivalTimeLinkedListDataNode data) {
+void ArrivalTimeLinkedList :: organize(ArrivalTimeLinkedListDataNode data) {
     if (this->isEmpty()) {
         this->insertAtBack(data);
     }

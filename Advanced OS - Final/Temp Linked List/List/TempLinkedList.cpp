@@ -62,7 +62,7 @@ void TempLinkedList :: deleteNode(TempLinkedListNode *newNode) {
             delete temp;
         }
         else if(this->tail == newNode) {
-            temp = head;
+            temp = this->head;
             
             while(temp != this->tail) {
                 prevNode = temp;
@@ -84,10 +84,8 @@ void TempLinkedList :: deleteNode(TempLinkedListNode *newNode) {
                     delete temp;
                     break;
                 }
-                if (counter <= 1){
-                    /* Do Nothing */
-                }
-                else {
+                
+                if (counter > 1) {
                     prevNode = prevNode->getNextNode();
                 }
             }

@@ -58,7 +58,7 @@ public:
     void display(int headerCount = 3);
     
     // MARK: - Organizing LinkedList
-    void organizeDataInLinkedList(LinkedListDataNode data);
+    void organize(LinkedListDataNode data);
     
     // MARK: - First Come First Serve Scheduling
     void FCFS(TempLinkedList *newTempLinkedList, WaitingAndTurnAroundTime *waitingAndTurnAroundTime,
