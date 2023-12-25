@@ -558,11 +558,8 @@ void LinkedList :: preEmptivePriority(int priorityLevel, TempLinkedList *newTemp
             
             data2 = this->findHighestPriority(burstTime, priorityLevel);
             
-            cout << "data2.getProcessId(): "<<data2.getProcessId()<<endl;
-            
             if(data2.getProcessId() == data.getProcessId()) {
                 /*Do Nothing*/
-                cout << "doing nothing: " << data2.getProcessId() << endl;
             }
             else {
                 break;
