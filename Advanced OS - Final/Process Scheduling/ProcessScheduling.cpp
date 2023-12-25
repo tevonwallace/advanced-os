@@ -398,7 +398,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
             digit[index] = 0;
         }
         
-        for(int index = 0; index < this->NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
+        for(int index = 0; index < ProcessScheduling::NUMBER_OF_SUPPORTED_ALGORITHMS; index++) {
             switch (this->tempArray[index]) {
                 case ProcessScheduling::FCFS_INDEX:
                     this->fcfsList = new LinkedList();
