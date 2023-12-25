@@ -536,7 +536,7 @@ void ProcessScheduling :: processAlgorithms() {
     for(int index = 3; index < 5; index++) {
         if(this->tempArray[index] == index+1) {
             cout << "\nPriority Type for "<< (tempArray[index]==4?"Non-Preemptive":"Preemptive") << " Priority"<<endl;
-            cout << "\n1 -> Lowest Number - Highest Priority\n2 -> Highest Number - Highest Priority"<<endl;
+            cout << "1 -> Lowest Number - Highest Priority\n2 -> Highest Number - Highest Priority"<<endl;
             cin >> this->priority;
             
             if(!cin) {
