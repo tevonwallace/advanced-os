@@ -511,7 +511,7 @@ void LinkedList :: SRTF(TempLinkedList *newTempLinkedList, int burstTime,
     }
 }
 
-// MARK: - Non-PreEmptive Priority Scheduling
+// MARK: - Non-Preemptive Priority Scheduling
 void LinkedList :: nonPreEmptivePriority(int priorityLevel, TempLinkedList *newTempLinkedList,
                                          WaitingAndTurnAroundTime *waitingAndTurnAroundTime, int burstTime,
                                          string errorID) throw(runtime_error) {
@@ -565,7 +565,7 @@ void LinkedList :: nonPreEmptivePriority(int priorityLevel, TempLinkedList *newT
     }
 }
 
-// MARK: - PreEmptive Priority Scheduling
+// MARK: - Preemptive Priority Scheduling
 void LinkedList :: preEmptivePriority(int priorityLevel, TempLinkedList *newTempLinkedList,
                                       int burstTime, int arrivalTime, string errorID) throw(runtime_error) {
     LinkedListNode *temp;

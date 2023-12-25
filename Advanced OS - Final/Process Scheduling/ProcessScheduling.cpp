@@ -343,7 +343,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
     cout << "|          PRIORITY BASED PROCESS SCHEDULING ALGORITHMS           |"<<endl;
     cout << "|*****************************************************************|" << endl;
     cout << "\n1 -> FCFS (First Come First Serve) Scheduling\n2 -> SJF (Shortest Job First) Scheduling";
-    cout << "\n3 -> SRTF (Shortest Remaining Time First) Scheduling\n4 -> Non Preemptive Priority Scheduling";
+    cout << "\n3 -> SRTF (Shortest Remaining Time First) Scheduling\n4 -> Non-Preemptive Priority Scheduling";
     cout << "\n5 -> Preemptive Priority Scheduling\n6 -> Round Robin Scheduling\n7 -> Exit"<<endl;
     fflush(stdin);
     getline(cin, typeOfScheduling);
@@ -594,7 +594,7 @@ void ProcessScheduling :: processAlgorithms() {
                 newTempLinkedList->calculateWaitingAndTurnAroundTime(srtfArrivalList, "SRTF", this->activateWaitingAndTurnAroundTimeForAllProcesses);
                 break;
             case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
-                cout << "\nNon-PreEmptive Priority Scheduling"<<endl;
+                cout << "\nNon-Preemptive Priority Scheduling"<<endl;
                 this->nonPreEmptivePriorityList->display(4);
                 this->nonPreEmptivePriorityList->nonPreEmptivePriority(priorityLevel[0], newTempLinkedList, waitingAndTurnAroundTime,nonPreEmptivePriorityList->getHead().getArrivalTime(), "");
                 this->nonPreEmptivePriorityList->destroy("Non-PreEmptive Priority");
@@ -603,7 +603,7 @@ void ProcessScheduling :: processAlgorithms() {
                 waitingAndTurnAroundTime->display(this->activateWaitingAndTurnAroundTimeForAllProcesses, "Non-PreEmptive Priority");
                 break;
             case ProcessScheduling::PRE_EMPTIVE_INDEX:
-                cout << "\nPreEmptive Priority Scheduling"<<endl;
+                cout << "\nPreemptive Priority Scheduling"<<endl;
                 this->preEmptivePriorityList->display(4);
                 this-> preEmptivePriorityList->preEmptivePriority(priorityLevel[1], newTempLinkedList, preEmptivePriorityList->getHead().getArrivalTime(), preEmptivePriorityList->getHead().getArrivalTime(), "");
                 this->preEmptivePriorityList->destroy("PreEmptive Priority");

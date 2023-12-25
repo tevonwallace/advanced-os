@@ -71,12 +71,12 @@ public:
     void SRTF(TempLinkedList *newTempLinkedList, int burstTime,
               int arrivalTime, int ran, string errorID) throw(runtime_error);
     
-    // MARK: - Non-PreEmptive Priority Scheduling
+    // MARK: - Non-Preemptive Priority Scheduling
     void nonPreEmptivePriority(int priorityLevel, TempLinkedList *newTempLinkedList,
                                WaitingAndTurnAroundTime *waitingAndTurnAroundTime,
                                int burstTime, string errorID) throw(runtime_error);
     
-    // MARK: - PreEmptive Priority Scheduling
+    // MARK: - Preemptive Priority Scheduling
     void preEmptivePriority(int priorityLevel, TempLinkedList *newTempLinkedList,
                             int burstTime, int arrivalTime, string errorID) throw(runtime_error);
     
