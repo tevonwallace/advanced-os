@@ -128,7 +128,7 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
             if((dataFromLine == "") || (this->isBlankSpace(dataFromLine)))
             { }
             else {
-                string* commaSeparatedData = splitStringByComma(dataFromLine);
+                string* commaSeparatedData = this->splitStringByComma(dataFromLine);
                 
                 string processId = commaSeparatedData[0], arrivalTime = commaSeparatedData[1];
                 string burstTime = commaSeparatedData[2], priority = commaSeparatedData[3];
@@ -381,7 +381,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
                 case ProcessScheduling::PRE_EMPTIVE_INDEX:
                     this->tempArray[4] = ProcessScheduling::PRE_EMPTIVE_INDEX;
                     this->preEmptivePriorityList = new LinkedList();
-                    this->preEmptiveArrivalList =  new ArrivalTimeLinkedList();
+                    this->preEmptiveArrivalList = new ArrivalTimeLinkedList();
                     break;
                 case ProcessScheduling::ROUND_ROBIN_INDEX:
                     this->tempArray[5] = ProcessScheduling::ROUND_ROBIN_INDEX;
@@ -408,7 +408,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
                     break;
                 case ProcessScheduling::SRTF_INDEX:
                     this->srtfList = new LinkedList();
-                    this->srtfArrivalList =  new ArrivalTimeLinkedList();
+                    this->srtfArrivalList = new ArrivalTimeLinkedList();
                     break;
                 case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
                     this->nonPreEmptivePriorityList = new LinkedList();
@@ -455,7 +455,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
             cout << "Enter details [Process ID, Arrival Time, Burst Time" << ((this->isPriorityScheduling() == true) ? ", Priority]": "]:\t") << " ";
             cin >> processData;
             
-            string* commaSeparatedData = splitStringByComma(processData);
+            string* commaSeparatedData = this->splitStringByComma(processData);
             
             string processId = commaSeparatedData[0];
             
@@ -497,11 +497,11 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
                         this->srtfArrivalList->organizeDataInLinkedList(arrivalTimeDataNode);
                         break;
                     case ProcessScheduling::NON_PRE_EMPTIVE_INDEX:
-                        newDataNode.setPriority(priority);
+                        newDataNode.setPriority(this->priority);
                         this->nonPreEmptivePriorityList->organizeDataInLinkedList(newDataNode);
                         break;
                     case ProcessScheduling::PRE_EMPTIVE_INDEX:
-                        newDataNode.setPriority(priority);
+                        newDataNode.setPriority(this->priority);
                         this->preEmptivePriorityList->organizeDataInLinkedList(newDataNode);
                         
                         arrivalTimeDataNode.setProcessId(processId);
@@ -535,7 +535,7 @@ void ProcessScheduling :: processAlgorithms() {
     
     for(int index = 3; index < 5; index++) {
         if(this->tempArray[index] == index+1) {
-            cout << "\nPriority Type for "<< (tempArray[index]==4?"Non-Preemptive":"Preemptive") << " Priority"<<endl;
+            cout << "\nPriority Type for "<< (this->tempArray[index]==4?"Non-Preemptive":"Preemptive") << " Priority"<<endl;
             cout << "1 -> Lowest Number - Highest Priority\n2 -> Highest Number - Highest Priority"<<endl;
             cin >> this->priority;
             
