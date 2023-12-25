@@ -11,7 +11,7 @@
 // MARK: - Constructor
 TempLinkedListNodeData :: TempLinkedListNodeData() {
     this->processId = "";
-    this->arrivalTime = 0; this->burstTime = 0;
+    this->arrivalTime = this->burstTime = 0;
 }
 
 // MARK: - Mutators

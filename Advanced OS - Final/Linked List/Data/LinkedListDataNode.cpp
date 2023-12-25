@@ -10,9 +10,7 @@
 
 LinkedListDataNode :: LinkedListDataNode() {
     this->processId = "";
-    this->arrivalTime = 0;
-    this->burstTime = 0;
-    this->priority = 0;
+    this->arrivalTime = this->burstTime = this->priority = 0;
 }
 
 // MARK: - Mutators
