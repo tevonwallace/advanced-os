@@ -164,7 +164,7 @@ double ArrivalTimeLinkedList :: calculateTurnAroundTime() const {
 }
 
 // MARK: - Destroy Arrival Time LinkedList
-void ArrivalTimeLinkedList :: destroy(string schedulingAlgorithm) {
+void ArrivalTimeLinkedList :: destroy() {
     ArrivalTimeLinkedListNode *temp;
     
     while (!this->isEmpty()) {

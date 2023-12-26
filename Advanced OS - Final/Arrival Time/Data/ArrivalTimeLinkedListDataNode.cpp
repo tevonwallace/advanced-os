@@ -13,6 +13,13 @@ ArrivalTimeLinkedListDataNode :: ArrivalTimeLinkedListDataNode() {
     this->arrivalTime = this->burstTime = this->timeCompleted = this->waitingTime = this->turnAroundTime = 0.0;
 }
 
+ArrivalTimeLinkedListDataNode :: ArrivalTimeLinkedListDataNode(string processId,
+                                         int arrivalTime, int burstTime) {
+    this->processId = processId;
+    this->arrivalTime = arrivalTime;
+    this->burstTime = burstTime;
+}
+
 // MARK: - Calculating Waiting and Turn Around Time
 void ArrivalTimeLinkedListDataNode :: calculateWaitingAndTurnAroundTime(int timeCompleted) {
     this->turnAroundTime = timeCompleted - this->arrivalTime;

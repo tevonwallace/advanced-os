@@ -95,7 +95,7 @@ void TempLinkedList :: deleteNode(TempLinkedListNode *newNode) {
 
 // MARK: - Calculating Waiting & Turn Around Time
 void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *arrivalTimeLinkedList,
-                                                         string schedulingAlgorithm, bool activateWaitingAndTurnAroundTimeForAllProcesses) {
+                                                         bool activateWaitingAndTurnAroundTimeForAllProcesses) {
     TempLinkedListNode *temp = this->head, *temp2;
     string processIDArray[30];
     int count = 0, burstTime = 0;
@@ -129,12 +129,12 @@ void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *
     cout << "Average Waiting Time: " << arrivalTimeLinkedList->calculateWaitingTime() << endl;
     cout << "Average Turn Around Time: " << arrivalTimeLinkedList->calculateTurnAroundTime() << "\n" << endl;
     
-    arrivalTimeLinkedList->destroy(schedulingAlgorithm);
-    this->destroy(schedulingAlgorithm);
+    arrivalTimeLinkedList->destroy();
+    this->destroy();
 }
 
 // MARK: - Displaying List
-void TempLinkedList :: display(string schedulingAlgorithm) {
+void TempLinkedList :: display() {
     TempLinkedListNode *temp = this->head;
     int ranCount = 0, oneDigit = 0;
     long oneID = 0;
@@ -240,7 +240,7 @@ void TempLinkedList :: display(string schedulingAlgorithm) {
 }
 
 // MARK: - Destroying List
-void TempLinkedList :: destroy(string schedulingAlgorithm) {
+void TempLinkedList :: destroy() {
     TempLinkedListNode *temp;
     
     while(!this->isEmpty()) {

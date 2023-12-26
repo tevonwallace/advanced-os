@@ -30,13 +30,13 @@ public:
     void deleteNode(TempLinkedListNode *newNode);
     
     // MARK: - Calculating Waiting & Turn Around Time
-    void calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *ArrivalTimeList, string schedulingAlgorithm,
+    void calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *ArrivalTimeList,
                                            bool activateWaitingAndTurnAroundTimeForAllProcesses);
     
     // MARK: - Displaying List
-    void display(string schedulingAlgorithm);
+    void display();
     
     // MARK: - Destroying List
-    void destroy(string schedulingAlgorithm);
+    void destroy();
 };
 #endif /* TempLinkedList_hpp */

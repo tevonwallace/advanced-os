@@ -32,9 +32,9 @@ public:
     bool isEmpty();
     
     // MARK: - Display Waiting & Turn Around Time
-    void display(bool activateWaitingAndTurnAroundTimeForAllProcesses, string schedulingAlgorithm);
+    void display(bool activateWaitingAndTurnAroundTimeForAllProcesses);
     
-    void destroy(string schedulingAlgorithm);
+    void destroy();
 };
 #endif /* WaitingAndTurnAroundTime_hpp */
 

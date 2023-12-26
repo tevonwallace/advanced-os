@@ -44,7 +44,7 @@ bool WaitingAndTurnAroundTime :: isEmpty() {
 }
 
 // MARK: - Display Waiting & Turn Around Time
-void WaitingAndTurnAroundTime :: display(bool activateWaitingAndTurnAroundTimeForAllProcesses, string schedulingAlgorithm) {
+void WaitingAndTurnAroundTime :: display(bool activateWaitingAndTurnAroundTimeForAllProcesses) {
     WaitingAndTurnAroundTimeNode *temp = this->head;
     double waitingTime = 0.0, turnAroundTime = 0.0;
     
@@ -69,10 +69,10 @@ void WaitingAndTurnAroundTime :: display(bool activateWaitingAndTurnAroundTimeFo
     cout << "Average Waiting Time: " << (waitingTime / this->count) << endl;
     cout << "Average Turn Around Time: " << (turnAroundTime / this->count) << "\n" << endl;
     
-    this->destroy(schedulingAlgorithm);
+    this->destroy();
 }
 
-void WaitingAndTurnAroundTime :: destroy(string schedulingAlgorithm) {
+void WaitingAndTurnAroundTime :: destroy() {
     WaitingAndTurnAroundTimeNode *temp;
     
     while(!this->isEmpty()) {

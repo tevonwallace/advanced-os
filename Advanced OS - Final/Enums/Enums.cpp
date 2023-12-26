@@ -6,3 +6,12 @@
 //
 
 #include <stdio.h>
+
+enum Algorithm {
+    fcfs = 1,
+    sjf = 2,
+    srtf = 3,
+    nonPreemptivePriority = 4,
+    preemptivePriority = 5,
+    roundRobin = 6,
+};

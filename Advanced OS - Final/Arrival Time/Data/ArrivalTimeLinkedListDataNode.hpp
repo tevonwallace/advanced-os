@@ -23,6 +23,7 @@ private:
 public:
     // MARK: - Constructors
     ArrivalTimeLinkedListDataNode();
+    ArrivalTimeLinkedListDataNode(string processId, int arrivalTime, int burstTime);
     
     // MARK: - Calculating Waiting and Turn Around Time
     void calculateWaitingAndTurnAroundTime(int timeCompleted);

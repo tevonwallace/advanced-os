@@ -59,7 +59,7 @@ public:
     double calculateTurnAroundTime() const;
     
     // MARK: - Destroy Arrival Time LinkedList
-    void destroy(string schedulingAlgorithm);
+    void destroy();
     
     // MARK: - Calculate Waiting & Turn Around Time
     void calculateWaitingAndTurnAroundTime(string processId, int completedTime,

@@ -66,13 +66,6 @@ private:
     bool isPriorityScheduling();
 public:
     enum Constants {
-        FCFS_INDEX = 1,
-        SJF_INDEX = 2,
-        SRTF_INDEX = 3,
-        NON_PRE_EMPTIVE_INDEX = 4,
-        PRE_EMPTIVE_INDEX = 5,
-        ROUND_ROBIN_INDEX = 6,
-        
         NUMBER_OF_SUPPORTED_ALGORITHMS = 6
     };
     

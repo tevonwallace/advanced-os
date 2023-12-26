@@ -23,6 +23,7 @@
 		6586649A2B38FAED000F38E0 /* WaitingAndTurnAroundTimeDataNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 658664982B38FAED000F38E0 /* WaitingAndTurnAroundTimeDataNode.cpp */; };
 		6586649E2B38FB24000F38E0 /* WaitingAndTurnAroundTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6586649C2B38FB24000F38E0 /* WaitingAndTurnAroundTime.cpp */; };
 		658664A22B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 658664A02B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.cpp */; };
+		65EC39762B3AB845000AB1F7 /* Enums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65EC39752B3AB845000AB1F7 /* Enums.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +71,7 @@
 		6586649D2B38FB24000F38E0 /* WaitingAndTurnAroundTime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WaitingAndTurnAroundTime.hpp; sourceTree = "<group>"; };
 		658664A02B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WaitingAndTurnAroundTimeNode.cpp; sourceTree = "<group>"; };
 		658664A12B38FB46000F38E0 /* WaitingAndTurnAroundTimeNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WaitingAndTurnAroundTimeNode.hpp; sourceTree = "<group>"; };
+		65EC39752B3AB845000AB1F7 /* Enums.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enums.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		6586645A2B38F75E000F38E0 /* Advanced OS - Final */ = {
 			isa = PBXGroup;
 			children = (
+				65EC39742B3AB837000AB1F7 /* Enums */,
 				658664732B38F8ED000F38E0 /* Arrival Time */,
 				658664662B38F7F4000F38E0 /* Linked List */,
 				658664622B38F79A000F38E0 /* Process Scheduling */,
@@ -297,6 +300,14 @@
 			path = Node;
 			sourceTree = "<group>";
 		};
+		65EC39742B3AB837000AB1F7 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				65EC39752B3AB845000AB1F7 /* Enums.cpp */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -363,6 +374,7 @@
 				658664722B38F8AB000F38E0 /* LinkedList.cpp in Sources */,
 				6586645C2B38F75E000F38E0 /* main.cpp in Sources */,
 				658664912B38FA95000F38E0 /* TempLinkedListNode.cpp in Sources */,
+				65EC39762B3AB845000AB1F7 /* Enums.cpp in Sources */,
 				6586649A2B38FAED000F38E0 /* WaitingAndTurnAroundTimeDataNode.cpp in Sources */,
 				658664652B38F7AF000F38E0 /* ProcessScheduling.cpp in Sources */,
 				658664772B38F90D000F38E0 /* ArrivalTimeLinkedList.cpp in Sources */,

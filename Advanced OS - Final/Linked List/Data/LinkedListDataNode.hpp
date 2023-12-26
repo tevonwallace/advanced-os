@@ -21,9 +21,10 @@ private:
 public:
     // MARK: - Contructor
     LinkedListDataNode();
+    LinkedListDataNode(string processId, int arrivalTime, int burstTime);
     
     // MARK: - Mutators
-    void setProcessID(string processId);
+    void setProcessId(string processId);
     
     void setArrivalTime(int arrivalTime);
     

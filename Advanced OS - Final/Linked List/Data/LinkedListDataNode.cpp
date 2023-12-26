@@ -13,8 +13,15 @@ LinkedListDataNode :: LinkedListDataNode() {
     this->arrivalTime = this->burstTime = this->priority = 0;
 }
 
+LinkedListDataNode :: LinkedListDataNode(string processId,
+                                         int arrivalTime, int burstTime) {
+    this->processId = processId;
+    this->arrivalTime = arrivalTime;
+    this->burstTime = burstTime;
+}
+
 // MARK: - Mutators
-void LinkedListDataNode :: setProcessID(string processId) {
+void LinkedListDataNode :: setProcessId(string processId) {
     this->processId = processId;
 }
 
