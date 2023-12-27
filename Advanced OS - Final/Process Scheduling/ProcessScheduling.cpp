@@ -114,13 +114,13 @@ void ProcessScheduling :: validatePriority() {
 // MARK: - Reading data from File
 void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
     // The working directory is set in Xcode's Scheme
-    ifstream fileObject(fileName, ios::in); //Opens the file for reading
+    ifstream fileObject(fileName, ios::in); // Opens the file for reading
     string dataFromLine;
     int numberOfProcesses = 0;
     
     if(fileObject) {
         while(!fileObject.eof()) {
-            getline(fileObject, dataFromLine); //reads the entire line from the file
+            getline(fileObject, dataFromLine); // reads the entire line from the file
             
             if((dataFromLine == "") || (this->isBlankSpace(dataFromLine)))
             { }
