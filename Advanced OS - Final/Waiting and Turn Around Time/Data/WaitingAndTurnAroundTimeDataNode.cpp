@@ -11,11 +11,7 @@
 // MARK: - Constructor
 WaitingAndTurnAroundTimeDataNode :: WaitingAndTurnAroundTimeDataNode() {
     this->processId = "";
-    this->arrivalTime = 0;
-    this->burstTime = 0;
-    this->waitingTime = 0;
-    this->turnAroundTime = 0;
-    this->timeCompleted = 0;
+    this->arrivalTime = this->burstTime = this->waitingTime = this->turnAroundTime = this->timeCompleted = 0;
 }
 
 WaitingAndTurnAroundTimeDataNode :: WaitingAndTurnAroundTimeDataNode(string processId, int arrivalTime, int burstTime) {
