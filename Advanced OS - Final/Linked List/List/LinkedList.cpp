@@ -371,12 +371,10 @@ LinkedListDataNode LinkedList :: findHighestPriority(int burstTime, int priority
 
 // MARK: - First Come First Serve Scheduling
 void LinkedList :: FCFS(int burstTime, bool ran) {
-    LinkedListNode *temp;
-    TempLinkedListNodeData data;
     bool shouldSkip = false;
     
     if(!this->isEmpty()) {
-        temp = this->head;
+        LinkedListNode *temp = this->head;
         
         if(ran == 0) {
             burstTime = temp->getData().getArrivalTime();
@@ -387,19 +385,12 @@ void LinkedList :: FCFS(int burstTime, bool ran) {
         }
         
         if (shouldSkip) {
-            data.setArrivalTime(burstTime);
-            
+            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
             burstTime += 1;
-            data.setBurstTime(burstTime);
-            data.setProcessId("-");
-            
-            this->newTempLinkedList->insertAtBack(data);
         }
         else {
-            data.setProcessId(temp->getData().getProcessId());
-            data.setArrivalTime(burstTime);
+            TempLinkedListNodeData data = TempLinkedListNodeData(temp->getData().getProcessId(), burstTime, (burstTime + temp->getData().getBurstTime()));
             burstTime += temp->getData().getBurstTime();
-            data.setBurstTime(burstTime);
             
             this->newTempLinkedList->insertAtBack(data);
             
@@ -416,13 +407,12 @@ void LinkedList :: FCFS(int burstTime, bool ran) {
 
 // MARK: - Shortest Job First Scheduling
 void LinkedList :: SJF(int burstTime, bool ran) {
-    LinkedListNode *temp;
     LinkedListDataNode data;
     TempLinkedListNodeData tempData;
     bool shouldSkip = false;
     
     if(!this->isEmpty()) {
-        temp = this->head;
+        LinkedListNode *temp = this->head;
         
         if(ran == false) {
             burstTime = temp->getData().getArrivalTime();
@@ -435,12 +425,8 @@ void LinkedList :: SJF(int burstTime, bool ran) {
         }
         
         if (shouldSkip) {
-            data.setArrivalTime(burstTime);
+            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
             burstTime += 1;
-            data.setBurstTime(burstTime);
-            data.setProcessId("-");
-            
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), data.getArrivalTime(), data.getBurstTime()));
         }
         else {
             this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), burstTime, (burstTime + data.getBurstTime())));
@@ -460,22 +446,19 @@ void LinkedList :: SJF(int burstTime, bool ran) {
 
 // MARK: - Shortest Remaining Time First Scheduling
 void LinkedList :: SRTF(int burstTime, int arrivalTime, bool ran) {
-    int tempBurstTime = 0;
-    LinkedListNode *temp;
-    LinkedListDataNode data, data2;
-    TempLinkedListNodeData tempData;
+    LinkedListDataNode data;
     
     bool shouldSkip = false;
     
     if(!this->isEmpty()) {
-        temp = this->head;
+        LinkedListNode *temp = this->head;
         
         if(ran == false) {
             data = temp->getData();
             arrivalTime = burstTime = data.getArrivalTime();
         }
         
-        data2 = this->findSmallestBurstTime(burstTime);
+        LinkedListDataNode data2 = this->findSmallestBurstTime(burstTime);
         
         if(data2.getProcessId() == "") {
             shouldSkip = true;
@@ -501,7 +484,7 @@ void LinkedList :: SRTF(int burstTime, int arrivalTime, bool ran) {
             this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), data.getArrivalTime(), data.getBurstTime()));
         }
         else {
-            tempBurstTime = data.getBurstTime();
+            int tempBurstTime = data.getBurstTime();
             
             for(int i = 0; i < tempBurstTime; i++) {
                 burstTime++;
@@ -528,14 +511,11 @@ void LinkedList :: SRTF(int burstTime, int arrivalTime, bool ran) {
 
 // MARK: - Non-Preemptive Priority Scheduling
 void LinkedList :: nonPreEmptivePriority(int priorityLevel, int burstTime) {
-    LinkedListNode *temp;
     LinkedListDataNode data;
     TempLinkedListNodeData tempData;
     bool shouldSkip = false;
     
     if(!this->isEmpty()) {
-        temp = this->head;
-        
         data = this->findHighestPriority(burstTime, priorityLevel);
         
         if(data.getProcessId() == "") {
@@ -543,13 +523,8 @@ void LinkedList :: nonPreEmptivePriority(int priorityLevel, int burstTime) {
         }
         
         if (shouldSkip) {
-            data.setArrivalTime(burstTime);
-            
+            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
             burstTime += 1;
-            data.setBurstTime(burstTime);
-            data.setProcessId("-");
-            
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), data.getArrivalTime(), data.getBurstTime()));
         }
         else {
             this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), burstTime, (burstTime + data.getBurstTime())));
@@ -568,14 +543,10 @@ void LinkedList :: nonPreEmptivePriority(int priorityLevel, int burstTime) {
 
 // MARK: - Preemptive Priority Scheduling
 void LinkedList :: preEmptivePriority(int priorityLevel, int burstTime, int arrivalTime){
-    LinkedListNode *temp;
-    LinkedListDataNode data, data2;
-    int tempBurstTime = 0;
-    
     if(!this->isEmpty()) {
-        temp = this->head;
+        LinkedListNode *temp = this->head;
         
-        data = this->findHighestPriority(burstTime, priorityLevel);
+        LinkedListDataNode data = this->findHighestPriority(burstTime, priorityLevel);
         
         if(data.getProcessId() == "") {
             data = this->head->getData();
@@ -589,16 +560,12 @@ void LinkedList :: preEmptivePriority(int priorityLevel, int burstTime, int arri
             temp = temp->getNextNode();
         }
         
-        tempBurstTime = data.getBurstTime();
-        
-        for(int i = 0; i < tempBurstTime; i++) {
+        for(int index = 0; index < data.getBurstTime(); index++) {
             burstTime++;
             data.setBurstTime(data.getBurstTime()-1);
             temp->setData(data);
             
-            data2 = this->findHighestPriority(burstTime, priorityLevel);
-            
-            if(data2.getProcessId() != data.getProcessId()) {
+            if(this->findHighestPriority(burstTime, priorityLevel).getProcessId() != data.getProcessId()) {
                 break;
             }
         }
@@ -616,12 +583,10 @@ void LinkedList :: preEmptivePriority(int priorityLevel, int burstTime, int arri
 // MARK: - Round Robin Scheduling
 void LinkedList :: roundRobin(string processId, int timeQuantum, int burstTime,
                               int arrivalTime, bool ran) {
-    LinkedListNode *temp;
     LinkedListDataNode data;
-    int subtractedValue = 0;
     
     if(!this->isEmpty()) {
-        temp = this->head;
+        LinkedListNode *temp = this->head;
         
         if(ran == false) {
             data = temp->getData();
@@ -644,7 +609,7 @@ void LinkedList :: roundRobin(string processId, int timeQuantum, int burstTime,
             }
         }
         
-        subtractedValue = data.getBurstTime() - timeQuantum;
+        int subtractedValue = data.getBurstTime() - timeQuantum;
         
         if(subtractedValue <= 0) {
             burstTime += data.getBurstTime();
