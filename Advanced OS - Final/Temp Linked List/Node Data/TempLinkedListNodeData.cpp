@@ -14,6 +14,12 @@ TempLinkedListNodeData :: TempLinkedListNodeData() {
     this->arrivalTime = this->burstTime = 0;
 }
 
+TempLinkedListNodeData :: TempLinkedListNodeData(string processId, int arrivalTime, int burstTime) {
+    this->processId = processId;
+    this->arrivalTime = arrivalTime;
+    this->burstTime = burstTime;
+}
+
 // MARK: - Mutators
 void TempLinkedListNodeData :: setProcessID(string processId) {
     this->processId = processId;

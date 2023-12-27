@@ -18,6 +18,12 @@ WaitingAndTurnAroundTimeDataNode :: WaitingAndTurnAroundTimeDataNode() {
     this->timeCompleted = 0;
 }
 
+WaitingAndTurnAroundTimeDataNode :: WaitingAndTurnAroundTimeDataNode(string processId, int arrivalTime, int burstTime) {
+    this->processId = processId;
+    this->arrivalTime = arrivalTime;
+    this->burstTime = burstTime;
+}
+
 // MARK: - Calculating Waiting & Turn Around Time
 void WaitingAndTurnAroundTimeDataNode :: calculateWaitingAndTurnAroundTime(int timeCompleted) {
     this->turnAroundTime = timeCompleted - this->arrivalTime;

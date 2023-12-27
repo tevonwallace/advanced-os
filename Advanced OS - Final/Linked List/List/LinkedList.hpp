@@ -12,7 +12,7 @@
 #include "TempLinkedList.hpp"
 #include "WaitingAndTurnAroundTime.hpp"
 #include "Queue.hpp"
-#include "../../Enums/Enums.cpp";
+#include "../../Enums/Enums.cpp"
 
 class LinkedList {
 private:
@@ -52,6 +52,9 @@ private:
     
     string getAlgorithm() const;
     
+    // MARK: - Displaying the contents of the list
+    void display(int headerCount = 3);
+    
 public:
     // MARK: - Constructor
     LinkedList();
@@ -64,9 +67,6 @@ public:
     
     void initialize(Algorithm algorithm);
     
-    // MARK: - Displaying the contents of the list
-    void display(int headerCount = 3);
-    
     void displayCharts(int activateWaitingAndTurnAroundTimeForAllProcesses,
                        ArrivalTimeLinkedList *arrivalList =  NULL);
     
@@ -74,22 +74,22 @@ public:
     void organize(LinkedListDataNode data);
     
     // MARK: - First Come First Serve Scheduling
-    void FCFS(int burstTime = 0, int ran = 0) throw(runtime_error);
+    void FCFS(int burstTime = 0, bool ran = false);
     
     // MARK: - Shortest Job First Scheduling
-    void SJF(int burstTime = 0, int ran = 0) throw(runtime_error);
+    void SJF(int burstTime = 0, bool ran = false);
     
     // MARK: - Shortest Remaining Time First Scheduling
-    void SRTF(int burstTime = 0, int arrivalTime = 0, int ran = 0) throw(runtime_error);
+    void SRTF(int burstTime = 0, int arrivalTime = 0, bool ran = false);
     
     // MARK: - Non-Preemptive Priority Scheduling
-    void nonPreEmptivePriority(int priorityLevel, int burstTime = 0) throw(runtime_error);
+    void nonPreEmptivePriority(int priorityLevel, int burstTime = 0);
     
     // MARK: - Preemptive Priority Scheduling
-    void preEmptivePriority(int priorityLevel, int burstTime = 0, int arrivalTime = 0) throw(runtime_error);
+    void preEmptivePriority(int priorityLevel, int burstTime = 0, int arrivalTime = 0);
     
     // MARK: - Round Robin Scheduling
     void roundRobin(string processId, int timeQuantum, int burstTime = 0,
-                    int arrivalTime = 0, int ran = 0) throw(runtime_error);
+                    int arrivalTime = 0, bool ran = false);
 };
 #endif /* LinkedList_hpp */

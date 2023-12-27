@@ -22,6 +22,8 @@ public:
     // MARK: - Constructor
     TempLinkedListNodeData();
     
+    TempLinkedListNodeData(string processId, int arrivalTime, int burstTime);
+    
     // MARK: - Mutators
     void setProcessID(string processId);
     

@@ -26,6 +26,8 @@ public:
     // MARK: - Constructor
     WaitingAndTurnAroundTimeDataNode();
     
+    WaitingAndTurnAroundTimeDataNode(string processId, int arrivalTime, int burstTime);
+    
     // MARK: - Calculating Waiting & Turn Around Time
     void calculateWaitingAndTurnAroundTime(int timeCompleted);
     
