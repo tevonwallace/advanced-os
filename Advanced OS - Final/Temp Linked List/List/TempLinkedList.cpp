@@ -96,7 +96,7 @@ void TempLinkedList :: deleteNode(TempLinkedListNode *newNode) {
 // MARK: - Calculating Waiting & Turn Around Time
 void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *arrivalTimeLinkedList,
                                                          bool activateWaitingAndTurnAroundTimeForAllProcesses) {
-    TempLinkedListNode *temp = this->head, *temp2;
+    TempLinkedListNode *temp = this->head;
     string processIDArray[30];
     int count = 0, burstTime = 0;
     
@@ -109,7 +109,7 @@ void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *
         processIDArray[count] = temp->getData().getProcessId();
         burstTime = temp->getData().getBurstTime();
         
-        temp2 = temp->getNextNode();
+        TempLinkedListNode *temp2 = temp->getNextNode();
         
         while (temp2 != NULL) {
             if (temp2->getData().getProcessId() == processIDArray[count]) {
