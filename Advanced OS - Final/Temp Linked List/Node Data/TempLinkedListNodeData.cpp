@@ -21,7 +21,7 @@ TempLinkedListNodeData :: TempLinkedListNodeData(string processId, int arrivalTi
 }
 
 // MARK: - Mutators
-void TempLinkedListNodeData :: setProcessID(string processId) {
+void TempLinkedListNodeData :: setProcessId(string processId) {
     this->processId = processId;
 }
 
