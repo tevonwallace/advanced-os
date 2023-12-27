@@ -486,21 +486,20 @@ void LinkedList :: SRTF(int burstTime, int arrivalTime, bool ran) {
             data = temp->getData();
             arrivalTime = burstTime = data.getArrivalTime();
         }
-        else {
-            data2 = this->findSmallestBurstTime(burstTime);
-            
-            if(data2.getProcessId() == "") {
-                shouldSkip = true;
-            }
-            
-            if (!shouldSkip) {
-                while(temp != NULL) {
-                    if(temp->getData().getProcessId() == data2.getProcessId()) {
-                        data = temp->getData();
-                        break;
-                    }
-                    temp = temp->getNextNode();
+        
+        data2 = this->findSmallestBurstTime(burstTime);
+        
+        if(data2.getProcessId() == "") {
+            shouldSkip = true;
+        }
+        
+        if (!shouldSkip) {
+            while(temp != NULL) {
+                if(temp->getData().getProcessId() == data2.getProcessId()) {
+                    data = temp->getData();
+                    break;
                 }
+                temp = temp->getNextNode();
             }
         }
         
