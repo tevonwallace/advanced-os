@@ -319,9 +319,9 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
         this->tempArray[index] = 0;
     }
     
-    cout << "|*****************************************************************|" << endl;
-    cout << "|          PRIORITY BASED PROCESS SCHEDULING ALGORITHMS           |"<<endl;
-    cout << "|*****************************************************************|" << endl;
+    cout << "|*******************************************************************************|" << endl;
+    cout << "|          PREEMPTIVE VS NON-PREEMPTIVE PROCESS SCHEDULING ALGORITHMS           |"<<endl;
+    cout << "|*******************************************************************************|" << endl;
     cout << "\n1 -> FCFS (First Come First Serve) Scheduling\n2 -> SJF (Shortest Job First) Scheduling";
     cout << "\n3 -> SRTF (Shortest Remaining Time First) Scheduling\n4 -> Non-Preemptive Priority Scheduling";
     cout << "\n5 -> Preemptive Priority Scheduling\n6 -> Round Robin Scheduling\n7 -> Exit"<<endl;
