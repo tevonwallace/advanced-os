@@ -286,6 +286,10 @@ void LinkedList :: destroy() {
     }
 }
 
+bool LinkedList :: isEmpty(string data) const {
+    return data == "";
+}
+
 // MARK: - Find Arrival Times
 string LinkedList :: findArrivalTime(int burstTime, string processId,
                                      int remainingBurstTime) {
@@ -420,7 +424,7 @@ void LinkedList :: SJF(int burstTime, bool ran) {
         
         data = this->findSmallestBurstTime(burstTime);
         
-        if(data.getProcessId() == "") {
+        if(this->isEmpty(data.getProcessId())) {
             shouldSkip = true;
         }
         
@@ -460,7 +464,7 @@ void LinkedList :: SRTF(int burstTime, int arrivalTime, bool ran) {
         
         LinkedListDataNode data2 = this->findSmallestBurstTime(burstTime);
         
-        if(data2.getProcessId() == "") {
+        if(this->isEmpty(data2.getProcessId())) {
             shouldSkip = true;
         }
         
@@ -518,7 +522,7 @@ void LinkedList :: nonPreEmptivePriority(int priorityLevel, int burstTime) {
     if(!this->isEmpty()) {
         data = this->findHighestPriority(burstTime, priorityLevel);
         
-        if(data.getProcessId() == "") {
+        if(this->isEmpty(data.getProcessId())) {
             shouldSkip = true;
         }
         
@@ -548,7 +552,7 @@ void LinkedList :: preEmptivePriority(int priorityLevel, int burstTime, int arri
         
         LinkedListDataNode data = this->findHighestPriority(burstTime, priorityLevel);
         
-        if(data.getProcessId() == "") {
+        if(this->isEmpty(data.getProcessId())) {
             data = this->head->getData();
         }
         

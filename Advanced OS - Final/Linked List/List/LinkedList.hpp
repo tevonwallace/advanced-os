@@ -55,6 +55,8 @@ private:
     // MARK: - Displaying the contents of the list
     void display(int headerCount = 3);
     
+    bool isEmpty(string data) const;
+    
 public:
     // MARK: - Constructor
     LinkedList();
