@@ -380,7 +380,7 @@ void LinkedList :: FCFS(int burstTime, bool ran) {
     if(!this->isEmpty()) {
         LinkedListNode *temp = this->head;
         
-        if(ran == 0) {
+        if(ran == false) {
             burstTime = temp->getData().getArrivalTime();
         }
         
