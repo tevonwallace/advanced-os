@@ -21,7 +21,7 @@ private:
     int count;
     Algorithm algorithm;
     
-    TempLinkedList *newTempLinkedList;
+    TempLinkedList *executionList;
     WaitingAndTurnAroundTime *waitingAndTurnAroundTime;
     
     Queue *queue;

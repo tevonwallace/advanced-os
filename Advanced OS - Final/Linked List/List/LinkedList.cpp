@@ -194,7 +194,7 @@ void LinkedList :: initialize(Algorithm algorithm) {
     this->algorithm = algorithm;
     this->display((algorithm == Algorithm::nonPreemptivePriority || algorithm == Algorithm::preemptivePriority) ? 4: 3);
     
-    this->newTempLinkedList = new TempLinkedList();
+    this->executionList = new TempLinkedList();
     this->waitingAndTurnAroundTime = new WaitingAndTurnAroundTime();
     
     if (algorithm == Algorithm::roundRobin) {
@@ -257,7 +257,7 @@ void LinkedList :: display(int headerCount) {
 void LinkedList :: displayCharts(int activateWaitingAndTurnAroundTimeForAllProcesses,
                                  ArrivalTimeLinkedList *arrivalList) {
     this->destroy();
-    this->newTempLinkedList->display();
+    this->executionList->display();
     
     if ((this->algorithm == Algorithm::fcfs)
         || (this->algorithm == Algorithm::sjf)
@@ -265,10 +265,10 @@ void LinkedList :: displayCharts(int activateWaitingAndTurnAroundTimeForAllProce
         this->waitingAndTurnAroundTime->display(activateWaitingAndTurnAroundTimeForAllProcesses);
     }
     else {
-        this->newTempLinkedList->calculateWaitingAndTurnAroundTime(arrivalList, activateWaitingAndTurnAroundTimeForAllProcesses);
+        this->executionList->calculateWaitingAndTurnAroundTime(arrivalList, activateWaitingAndTurnAroundTimeForAllProcesses);
     }
     
-    this->newTempLinkedList->destroy();
+    this->executionList->destroy();
     
     if (this->algorithm == Algorithm::roundRobin) {
         this->queue->destroy();
@@ -385,14 +385,14 @@ void LinkedList :: FCFS(int burstTime, bool ran) {
         }
         
         if (shouldSkip) {
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
+            this->executionList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
             burstTime += 1;
         }
         else {
             TempLinkedListNodeData data = TempLinkedListNodeData(temp->getData().getProcessId(), burstTime, (burstTime + temp->getData().getBurstTime()));
             burstTime += temp->getData().getBurstTime();
             
-            this->newTempLinkedList->insertAtBack(data);
+            this->executionList->insertAtBack(data);
             
             WaitingAndTurnAroundTimeDataNode waitingAndTurnAroundData = WaitingAndTurnAroundTimeDataNode(temp->getData().getProcessId(), temp->getData().getArrivalTime(), temp->getData().getBurstTime());
             waitingAndTurnAroundData.calculateWaitingAndTurnAroundTime(burstTime);
@@ -425,11 +425,11 @@ void LinkedList :: SJF(int burstTime, bool ran) {
         }
         
         if (shouldSkip) {
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
+            this->executionList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
             burstTime += 1;
         }
         else {
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), burstTime, (burstTime + data.getBurstTime())));
+            this->executionList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), burstTime, (burstTime + data.getBurstTime())));
             
             burstTime += data.getBurstTime();
             
@@ -481,7 +481,7 @@ void LinkedList :: SRTF(int burstTime, int arrivalTime, bool ran) {
             data.setBurstTime(burstTime);
             data.setProcessId("-");
             
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), data.getArrivalTime(), data.getBurstTime()));
+            this->executionList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), data.getArrivalTime(), data.getBurstTime()));
         }
         else {
             int tempBurstTime = data.getBurstTime();
@@ -497,7 +497,7 @@ void LinkedList :: SRTF(int burstTime, int arrivalTime, bool ran) {
                 }
             }
             
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), arrivalTime, burstTime));
+            this->executionList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), arrivalTime, burstTime));
             arrivalTime = burstTime;
             
             if(temp->getData().getBurstTime() == 0) {
@@ -523,11 +523,11 @@ void LinkedList :: nonPreEmptivePriority(int priorityLevel, int burstTime) {
         }
         
         if (shouldSkip) {
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
+            this->executionList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
             burstTime += 1;
         }
         else {
-            this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), burstTime, (burstTime + data.getBurstTime())));
+            this->executionList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), burstTime, (burstTime + data.getBurstTime())));
             
             burstTime += data.getBurstTime();
             
@@ -570,7 +570,7 @@ void LinkedList :: preEmptivePriority(int priorityLevel, int burstTime, int arri
             }
         }
         
-        this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(temp->getData().getProcessId(), arrivalTime, burstTime));
+        this->executionList->insertAtBack(TempLinkedListNodeData(temp->getData().getProcessId(), arrivalTime, burstTime));
         arrivalTime = burstTime;
         
         if(temp->getData().getBurstTime() == 0) {
@@ -596,7 +596,7 @@ void LinkedList :: roundRobin(string processId, int timeQuantum, int burstTime,
             data = this->queue->dequeue();
             
             if(data.getArrivalTime() > burstTime) {
-                this->newTempLinkedList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
+                this->executionList->insertAtBack(TempLinkedListNodeData("-", burstTime, (burstTime + 1)));
                 burstTime += 1;
             }
             
@@ -620,7 +620,7 @@ void LinkedList :: roundRobin(string processId, int timeQuantum, int burstTime,
             burstTime += timeQuantum;
         }
         
-        this->newTempLinkedList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), arrivalTime, burstTime));
+        this->executionList->insertAtBack(TempLinkedListNodeData(data.getProcessId(), arrivalTime, burstTime));
         
         arrivalTime = burstTime;
         
