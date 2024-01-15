@@ -275,6 +275,22 @@ void LinkedList :: displayCharts(int activateWaitingAndTurnAroundTimeForAllProce
     }
 }
 
+LinkedListDataNode LinkedList :: get(int index) {
+    LinkedListNode *temp = this->head;
+    int count = 0;
+    
+    while (temp != NULL) {
+        if (index == count) {
+            return temp->getData();
+        }
+        
+        temp = temp->getNextNode();
+        count++;
+    }
+    
+    return LinkedListDataNode();
+}
+
 // MARK: - Destroying LinkedList
 void LinkedList :: destroy() {
     LinkedListNode *temp;
@@ -546,7 +562,7 @@ void LinkedList :: nonPreEmptivePriority(int priorityLevel, int burstTime) {
 }
 
 // MARK: - Preemptive Priority Scheduling
-void LinkedList :: preEmptivePriority(int priorityLevel, int burstTime, int arrivalTime){
+void LinkedList :: preEmptivePriority(int priorityLevel, int burstTime, int arrivalTime) {
     if(!this->isEmpty()) {
         LinkedListNode *temp = this->head;
         
