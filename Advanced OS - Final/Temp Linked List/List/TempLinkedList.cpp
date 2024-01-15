@@ -7,6 +7,7 @@
 //
 
 #include "TempLinkedList.hpp"
+#include "../../Linked List/List/LinkedList.hpp"
 
 // MARK: - Constructor
 TempLinkedList :: TempLinkedList() {
@@ -97,7 +98,7 @@ void TempLinkedList :: deleteNode(TempLinkedListNode *newNode) {
 void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *arrivalTimeLinkedList,
                                                          bool activateWaitingAndTurnAroundTimeForAllProcesses) {
     TempLinkedListNode *temp = this->head;
-    string processIDArray[30];
+    LinkedList *processIdList = new LinkedList();
     int count = 0, burstTime = 0;
     
     if (activateWaitingAndTurnAroundTimeForAllProcesses) {
@@ -106,13 +107,13 @@ void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *
     }
     
     while(temp != NULL) {
-        processIDArray[count] = temp->getData().getProcessId();
+        processIdList->insertAtBack(LinkedListDataNode(temp->getData().getProcessId(), 0, 0));
         burstTime = temp->getData().getBurstTime();
         
         TempLinkedListNode *temp2 = temp->getNextNode();
         
         while (temp2 != NULL) {
-            if (temp2->getData().getProcessId() == processIDArray[count]) {
+            if (temp2->getData().getProcessId() == processIdList->get(count).getProcessId()) {
                 burstTime = temp2->getData().getBurstTime();
                 this->deleteNode(temp2);
                 temp2 = temp;
@@ -120,7 +121,9 @@ void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *
             temp2 = temp2->getNextNode();
         }
         
-        arrivalTimeLinkedList->calculateWaitingAndTurnAroundTime(processIDArray[count], burstTime, activateWaitingAndTurnAroundTimeForAllProcesses);
+        arrivalTimeLinkedList->calculateWaitingAndTurnAroundTime(processIdList->get(count).getProcessId(),
+                                                                 burstTime,
+                                                                 activateWaitingAndTurnAroundTimeForAllProcesses);
         
         count++;
         temp = temp->getNextNode();
@@ -131,6 +134,7 @@ void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *
     
     arrivalTimeLinkedList->destroy();
     this->destroy();
+    processIdList->destroy();
 }
 
 // MARK: - Displaying List

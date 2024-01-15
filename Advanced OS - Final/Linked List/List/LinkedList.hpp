@@ -29,8 +29,6 @@ private:
     // MARK: - Insertions
     void insertAtFront(LinkedListDataNode data);
     
-    void insertAtBack(LinkedListDataNode data);
-    
     void insertAtMiddle(LinkedListDataNode data);
     
     // MARK: - Deleting a Node
@@ -64,6 +62,8 @@ public:
     // MARK: - Head and Tail Accessors
     LinkedListDataNode getHead() const;
     
+    void insertAtBack(LinkedListDataNode data);
+    
     // MARK: - Destroying LinkedList
     void destroy();
     
@@ -71,6 +71,8 @@ public:
     
     void displayCharts(int activateWaitingAndTurnAroundTimeForAllProcesses,
                        ArrivalTimeLinkedList *arrivalList =  NULL);
+    
+    LinkedListDataNode get(int index);
     
     // MARK: - Organizing LinkedList
     void organize(LinkedListDataNode data);

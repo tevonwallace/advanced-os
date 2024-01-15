@@ -145,7 +145,8 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 
                 numberOfProcesses++;
                 
-                LinkedListDataNode newDataNode = LinkedListDataNode(processId, atoi(arrivalTime.c_str()), atoi(burstTime.c_str()));
+                LinkedListDataNode newDataNode = LinkedListDataNode(processId, atoi(arrivalTime.c_str()), 
+                                                                    atoi(burstTime.c_str()));
                 
                 if(this->tempArray[3] == Algorithm::nonPreemptivePriority) {
                     this->priority = atoi(priority.c_str());
@@ -174,7 +175,9 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 
                 if(this->tempArray[2] == Algorithm::srtf) {
                     this->srtfList->organize(newDataNode);
-                    this->srtfArrivalList->organize(ArrivalTimeLinkedListDataNode(processId, atoi(arrivalTime.c_str()), atoi(burstTime.c_str())));
+                    this->srtfArrivalList->organize(ArrivalTimeLinkedListDataNode(processId, 
+                                                                                  atoi(arrivalTime.c_str()), 
+                                                                                  atoi(burstTime.c_str())));
                 }
                 
                 if(this->tempArray[3] == Algorithm::nonPreemptivePriority) {
@@ -193,12 +196,16 @@ void ProcessScheduling :: readFromFile(string fileName)  throw(runtime_error) {
                 
                     newDataNode.setPriority(atoi(priority.c_str()));
                     this->preEmptivePriorityList->organize(newDataNode);
-                    this->preEmptiveArrivalList->organize(ArrivalTimeLinkedListDataNode(processId, atoi(arrivalTime.c_str()), atoi(burstTime.c_str())));
+                    this->preEmptiveArrivalList->organize(ArrivalTimeLinkedListDataNode(processId, 
+                                                                                        atoi(arrivalTime.c_str()), 
+                                                                                        atoi(burstTime.c_str())));
                 }
                 
                 if(this->tempArray[5] == Algorithm::roundRobin) {
                     this->roundRobinList->organize(newDataNode);
-                    this->roundRobinArrivalList->organize(ArrivalTimeLinkedListDataNode(processId, atoi(arrivalTime.c_str()), atoi(burstTime.c_str())));
+                    this->roundRobinArrivalList->organize(ArrivalTimeLinkedListDataNode(processId, 
+                                                                                        atoi(arrivalTime.c_str()),
+                                                                                        atoi(burstTime.c_str())));
                 }
             }
         }
@@ -494,7 +501,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
 void ProcessScheduling :: processAlgorithms() {
     this->priority = 0;
     
-    int timeQuantum = 0, priorityLevel[2] = {0, 0};;
+    int timeQuantum = 0, priorityLevel[2] = {0, 0};
     
     for(int index = 3; index < 5; index++) {
         if(this->tempArray[index] == index+1) {
@@ -548,20 +555,24 @@ void ProcessScheduling :: processAlgorithms() {
             case Algorithm::nonPreemptivePriority:
                 cout << "\nNon-Preemptive Priority Scheduling"<<endl;
                 this->nonPreEmptivePriorityList->initialize(Algorithm::nonPreemptivePriority);
-                this->nonPreEmptivePriorityList->nonPreEmptivePriority(priorityLevel[0],  this->nonPreEmptivePriorityList->getHead().getArrivalTime());
+                this->nonPreEmptivePriorityList->nonPreEmptivePriority(priorityLevel[0],  
+                                                                       this->nonPreEmptivePriorityList->getHead().getArrivalTime());
                 this->nonPreEmptivePriorityList->displayCharts(this->activateWaitingAndTurnAroundTimeForAllProcesses);
                 break;
             case Algorithm::preemptivePriority:
                 cout << "\nPreemptive Priority Scheduling"<<endl;
                 this->preEmptivePriorityList->initialize(Algorithm::preemptivePriority);
-                this-> preEmptivePriorityList->preEmptivePriority(priorityLevel[1],  this->preEmptivePriorityList->getHead().getArrivalTime(), preEmptivePriorityList->getHead().getArrivalTime());
+                this-> preEmptivePriorityList->preEmptivePriority(priorityLevel[1],
+                                                                  this->preEmptivePriorityList->getHead().getArrivalTime(),
+                                                                  this->preEmptivePriorityList->getHead().getArrivalTime());
                 this->preEmptivePriorityList->displayCharts(this->activateWaitingAndTurnAroundTimeForAllProcesses, this->preEmptiveArrivalList);
                 break;
             case Algorithm::roundRobin:
                 cout << "\nRound Robin Scheduling (Time Quantum: "<< timeQuantum<< ")"<<endl;
                 this->roundRobinList->initialize(Algorithm::roundRobin);
                 this->roundRobinList->roundRobin(this->roundRobinList->getHead().getProcessId(), timeQuantum);
-                this->roundRobinList->displayCharts(this->activateWaitingAndTurnAroundTimeForAllProcesses, this->roundRobinArrivalList);
+                this->roundRobinList->displayCharts(this->activateWaitingAndTurnAroundTimeForAllProcesses, 
+                                                    this->roundRobinArrivalList);
                 break;
         }
     }
