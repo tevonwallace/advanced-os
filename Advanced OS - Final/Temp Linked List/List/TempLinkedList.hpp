@@ -16,6 +16,8 @@ private:
     // MARK: - Declaring Variables
     TempLinkedListNode *head, *tail;
     
+    TempLinkedListNodeData get(int index);
+    
 public:
     // MARK: - Constructor
     TempLinkedList();
