@@ -72,8 +72,6 @@ public:
     void displayCharts(int activateWaitingAndTurnAroundTimeForAllProcesses,
                        ArrivalTimeLinkedList *arrivalList =  NULL);
     
-    LinkedListDataNode get(int index);
-    
     // MARK: - Organizing LinkedList
     void organize(LinkedListDataNode data);
     

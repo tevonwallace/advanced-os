@@ -275,22 +275,6 @@ void LinkedList :: displayCharts(int activateWaitingAndTurnAroundTimeForAllProce
     }
 }
 
-LinkedListDataNode LinkedList :: get(int index) {
-    LinkedListNode *temp = this->head;
-    int count = 0;
-    
-    while (temp != NULL) {
-        if (index == count) {
-            return temp->getData();
-        }
-        
-        temp = temp->getNextNode();
-        count++;
-    }
-    
-    return LinkedListDataNode();
-}
-
 // MARK: - Destroying LinkedList
 void LinkedList :: destroy() {
     LinkedListNode *temp;

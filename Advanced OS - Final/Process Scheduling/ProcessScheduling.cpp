@@ -327,7 +327,7 @@ void ProcessScheduling :: acceptDataToBeProcessed() {
     }
     
     cout << "|*******************************************************************************|" << endl;
-    cout << "|          PREEMPTIVE VS NON-PREEMPTIVE PROCESS SCHEDULING ALGORITHMS           |"<<endl;
+    cout << "|          PREEMPTIVE VS NON-PREEMPTIVE PROCESS SCHEDULING ALGORITHMS           |" << endl;
     cout << "|*******************************************************************************|" << endl;
     cout << "\n1 -> FCFS (First Come First Serve) Scheduling\n2 -> SJF (Shortest Job First) Scheduling";
     cout << "\n3 -> SRTF (Shortest Remaining Time First) Scheduling\n4 -> Non-Preemptive Priority Scheduling";

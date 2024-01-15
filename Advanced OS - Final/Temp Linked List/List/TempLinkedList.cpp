@@ -7,7 +7,6 @@
 //
 
 #include "TempLinkedList.hpp"
-#include "../../Linked List/List/LinkedList.hpp"
 
 // MARK: - Constructor
 TempLinkedList :: TempLinkedList() {
@@ -94,11 +93,27 @@ void TempLinkedList :: deleteNode(TempLinkedListNode *newNode) {
     }
 }
 
+TempLinkedListNodeData TempLinkedList :: get(int index) {
+    TempLinkedListNode *temp = this->head;
+    int count = 0;
+    
+    while (temp != NULL) {
+        if (index == count) {
+            return temp->getData();
+        }
+        
+        temp = temp->getNextNode();
+        count++;
+    }
+    
+    return TempLinkedListNodeData();
+}
+
 // MARK: - Calculating Waiting & Turn Around Time
 void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *arrivalTimeLinkedList,
                                                          bool activateWaitingAndTurnAroundTimeForAllProcesses) {
     TempLinkedListNode *temp = this->head;
-    LinkedList *processIdList = new LinkedList();
+    TempLinkedList *processIdList = new TempLinkedList();
     int count = 0, burstTime = 0;
     
     if (activateWaitingAndTurnAroundTimeForAllProcesses) {
@@ -107,7 +122,7 @@ void TempLinkedList :: calculateWaitingAndTurnAroundTime(ArrivalTimeLinkedList *
     }
     
     while(temp != NULL) {
-        processIdList->insertAtBack(LinkedListDataNode(temp->getData().getProcessId(), 0, 0));
+        processIdList->insertAtBack(TempLinkedListNodeData(temp->getData().getProcessId(), 0, 0));
         burstTime = temp->getData().getBurstTime();
         
         TempLinkedListNode *temp2 = temp->getNextNode();
