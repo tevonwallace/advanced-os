@@ -15,7 +15,7 @@ Clone the repository. Open in Xcode
 
 Update the default "Scheme" and change the "Working Directory" to the location of the cloned repository.
 
-Once the Scheme is updated. Go head and run the application.
+Once the Scheme is updated. Go ahead and run the application.
 
 ```
 |*******************************************************************************|
@@ -33,8 +33,6 @@ Once the Scheme is updated. Go head and run the application.
 
 Select the algorithm you wish to execute.
 
-
-Select the algorithm you wish to execute.
 ```
 |*******************************************************************************|
 |          PREEMPTIVE VS NON-PREEMPTIVE PROCESS SCHEDULING ALGORITHMS           |
@@ -97,7 +95,7 @@ Average Turn Around Time: 6.8
 ```
 
 ## Executing Multiple Algorithms
-You may select multiple algorithms by using the hyphen "-" delimiter. You can also show the waiting and turn around time for each algorithm using the "-all" parameter.
+You may select multiple algorithms by using the hyphen "-" delimiter. You can also show the waiting and turn around time for process in each algorithm by using the "-all" parameter.
 
 ```
 |*******************************************************************************|
